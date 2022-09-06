@@ -9,7 +9,7 @@ namespace CecilStLabs
    class SetConfigInternalEvent : public IInternalEvent
    {
       public:
-         SetConfigInternalEvent( string name, string value ); 
+         SetConfigInternalEvent( std::string name, std::string value ); 
          SetConfigInternalEvent( IEVENT_DATA& evtData ); 
          
          virtual ~SetConfigInternalEvent();
@@ -20,13 +20,13 @@ namespace CecilStLabs
           * @param data buffer of data
           * @param size size of the data read from event pipe
           */
-         void setData( const uint8_t* data, const int size );
+         void setData( const uint8_t* data, const uint8_t size );
          
          /**
           * getters for the name/value
           */
-         inline string getName() { return m_name; }
-         inline string getValue() { return m_value; }
+         inline std::string getName() { return m_name; }
+         inline std::string getValue() { return m_value; }
          
       protected:
          
@@ -36,8 +36,8 @@ namespace CecilStLabs
           */
          void splitData();
          
-         string m_name;
-         string m_value;
+         std::string m_name;
+         std::string m_value;
    };
 }
 #endif

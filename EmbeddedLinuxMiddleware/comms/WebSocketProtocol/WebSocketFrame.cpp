@@ -64,7 +64,7 @@ namespace CecilStLabs
             m_messageBuffer[byteIndex++] = MASK_BIT | (m_applicationMessage.length() + 1);
          }
          else if ((m_applicationMessage.length() >= TWO_BYTE_LENGTH_LIMIT) &&
-                  (m_applicationMessage.length() < MAX_UINT16_VALUE))
+                  (m_applicationMessage.length() < UINT16_MAX))
          {
             m_messageBuffer[byteIndex++] = MASK_BIT | TWO_BYTE_LENGTH_LIMIT;
             m_messageBuffer[byteIndex++] = (uint8_t)(((m_applicationMessage.length() + 1) & 0xFF00) >> 8);

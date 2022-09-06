@@ -11,7 +11,6 @@
 #include <functional>
 #include <cctype>
 #include <locale>
-using namespace std;
 
 #include "../basicTypes.h"
 #include "../util/EnumByName.h"
@@ -48,9 +47,9 @@ namespace CecilStLabs
       {
          // At a minimum print some information out to standard output and standard error.
 
-         ostringstream buff;
-         buff << "ASSERT - EPIC FAILURE " << filename << " " << lineNumber << endl;
-         buff << "Last error via errno was: " << errno << " " << strerror(errno) << endl;
+         std::ostringstream buff;
+         buff << "ASSERT - EPIC FAILURE " << filename << " " << lineNumber << std::endl;
+         buff << "Last error via errno was: " << errno << " " << strerror(errno) << std::endl;
 
          if ((NULL != m_instance) &&
              (NULL != m_instance->m_logDriver))
@@ -59,7 +58,7 @@ namespace CecilStLabs
          }
          else
          {
-            cerr << buff.str() << endl;
+            std::cerr << buff.str() << std::endl;
          }
 
          // NOTE: Sending to LogEntry requires communications or at
@@ -177,11 +176,11 @@ namespace CecilStLabs
              (m_instance->m_executablePath.empty()))
          {
             // finally convert the char* magic above to the static std::string
-            m_instance->m_executablePath = string(configPath);
+            m_instance->m_executablePath = std::string(configPath);
          }
       }
 
-      return string(configPath);
+      return std::string(configPath);
    }
 
    bool BasicUtil::FileExists(std::string filePath)
@@ -206,7 +205,7 @@ namespace CecilStLabs
       m_instance->m_logDriver = logDriver;
    }
 
-   void BasicUtil::log(string message)
+   void BasicUtil::log(std::string message)
    {
       if (NULL != m_instance)
       {

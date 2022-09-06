@@ -2,8 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <vector>
-
 
 #include <cstdio>
 #include <cstring>
@@ -11,7 +11,6 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-using namespace std;
 
 #include "../../common/tinyxml/tinyxml2.h"
 using namespace tinyxml2;
@@ -53,10 +52,10 @@ namespace CecilStLabs
       // intentionally left blank
    }
 
-   eShellHandlers LocalShellBaseHandler::processCommand( const string& command, const char delim, ICommandAction* action )
+   eShellHandlers LocalShellBaseHandler::processCommand( const std::string& command, const char delim, ICommandAction* action )
    {
       eShellHandlers retHandler = HANDLER_INVALID;
-      vector<string> elems;
+      std::vector<std::string> elems;
 
       split( command, delim, elems );
 
@@ -77,7 +76,7 @@ namespace CecilStLabs
 
       if( HANDLER_INVALID == retHandler )
       {
-         cout << "Invalid command" << endl;
+         std::cout << "Invalid command" << std::endl;
       }
 
       return retHandler;
@@ -87,11 +86,10 @@ namespace CecilStLabs
    {
       // TODO: can these be moved somewhere instead of hard coded?
 
-      std::cout << std::endl;
-      std::cout << "Commands available:" << std::endl;
-      std::cout << "-------------------" << std::endl;
-      std::cout << "  ?         - Show list of available commands" << std::endl;
-      std::cout << "  license   - Show open source licensing" << std::endl;
+      std::cout << "\nCommands available:\n";
+      std::cout << "-------------------\n";
+      std::cout << "  ?         - Show list of available commands\n";
+      std::cout << "  license   - Show open source licensing\n";
       std::cout << "  exit      - Leave shell" << std::endl;
    }
 
@@ -103,10 +101,10 @@ namespace CecilStLabs
       return true;
    }
 
-   void LocalShellBaseHandler::split(const string& s, const char delim, vector<string> &elems)
+   void LocalShellBaseHandler::split(const std::string& s, const char delim, std::vector<std::string> &elems)
    {
-      stringstream ss(s);
-      string item;
+      std::stringstream ss(s);
+      std::string item;
       while( getline( ss, item, delim ) )
       {
          elems.push_back(item);

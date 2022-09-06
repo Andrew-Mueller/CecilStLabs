@@ -4,7 +4,7 @@
 
 #include <string>
 #include <sstream>
-using namespace std;
+#include <iostream>
 
 // darwin doesn't seem to have the linux RTC operating system header
 #ifndef __APPLE__

@@ -17,7 +17,7 @@ namespace CecilStLabs
           * @param configStr String containing the section of XML to read.
           * @return True if all of the data was successfully read, false if an error occurred.
           */
-         virtual bool readSection(string configStr) = 0;
+         virtual bool readSection(std::string configStr) = 0;
 
          /**
           * Writes the configuration section and returns the XML string
@@ -54,7 +54,7 @@ namespace CecilStLabs
           * @returns True if the config file was read successfully,
           *          False if an error occurred while reading the configuration file.
           */
-         virtual bool readConfigFile(string configFilePath) = 0;
+         virtual bool readConfigFile(std::string configFilePath) = 0;
 
          /**
           * Writes the Configuration to the specified filename path.
@@ -64,13 +64,13 @@ namespace CecilStLabs
           * @return True if the config file was written successfully,
           *         False if an error occured while writing the configuration file.
           */
-         virtual bool writeConfigFile(string configFilePath) = 0;
+         virtual bool writeConfigFile(std::string configFilePath) = 0;
 
          /**
           * setter and getter for file path
           */
-         string getConfigFilePath() { return m_configFilePath; }
-         void setConfigFilePath( const string& path) { m_configFilePath = path; }
+         std::string getConfigFilePath() { return m_configFilePath; }
+         void setConfigFilePath( const std::string& path) { m_configFilePath = path; }
 
       protected:
 
@@ -96,7 +96,7 @@ namespace CecilStLabs
          /**
           * path to where config file is stored
           */
-         string m_configFilePath;
+         std::string m_configFilePath;
    };
 }
 

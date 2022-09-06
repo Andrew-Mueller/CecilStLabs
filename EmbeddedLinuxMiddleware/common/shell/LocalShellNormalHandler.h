@@ -24,16 +24,15 @@ namespace CecilStLabs
           * @param delim   the delimiter between parts of command
           * @param action  the type of action like a system call
           *
-          * @return
+          * @return Shell Handler enumeration as a result of processing the command.
           *
           */
-         virtual eShellHandlers processCommand( const string& command, const char delim, ICommandAction* action );
+         virtual eShellHandlers processCommand( const std::string& command, const char delim, ICommandAction* action );
 
       protected:
+         
          // override this to add help for commands in derived class
          virtual void cmdHelp();
-
-
    };
 }
 #endif

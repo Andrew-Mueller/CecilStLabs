@@ -54,7 +54,7 @@ namespace CecilStLabs
 
       protected:
 
-         // NOTE: define the copy constructor so the compiler
+         // NOTE: define the copy constructor so the compiler doesn't generate it for us.
          NameValuePair(NameValuePair& copy __attribute__((unused))) : SingleLink((SingleLink&)copy) {};
 
          /**

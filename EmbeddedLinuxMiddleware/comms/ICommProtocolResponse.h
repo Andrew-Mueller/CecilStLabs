@@ -38,7 +38,7 @@ namespace CecilStLabs
          /**
           * Contains the requested data.
           */
-         string m_messageBody;
+         std::string m_messageBody;
    };
 
 }

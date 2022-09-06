@@ -43,10 +43,10 @@ namespace CecilStLabs
           * @return true if command processed, false if not
           *
           */
-         virtual eShellHandlers processCommand( const string& command, const char delim, ICommandAction* action );
+         virtual eShellHandlers processCommand( const std::string& command, const char delim, ICommandAction* action );
 
          inline eShellHandlers getType() { return m_type; }
-         inline string getPrompt() { return m_prompt; }
+         inline std::string getPrompt() { return m_prompt; }
 
          // TODO: this should not be here.
           /**
@@ -57,7 +57,7 @@ namespace CecilStLabs
           * @param elems array of strings to put the parts
           *
           */
-          void split(const string& str, const char delim, vector<string> &elems);
+          void split(const std::string& str, const char delim, std::vector<std::string> &elems);
 
       protected:
 
@@ -80,7 +80,7 @@ namespace CecilStLabs
          /**
           * the prompt that will show by command entry
           */
-         string m_prompt;
+         std::string m_prompt;
 
          /**
           * type of handler set by the constructor

@@ -14,7 +14,7 @@ namespace CecilStLabs
          virtual ~NullConfig();
 
          // implement the IConfig interface by implementing the last three functions.
-         bool readSection(string configStr);
+         bool readSection(std::string configStr);
 
          std::string writeSection(XMLNode &xmlNode);
 
@@ -22,9 +22,9 @@ namespace CecilStLabs
 
          bool setValueByName(const std::string name, const std::string value);
 
-         bool readConfigFile(string configFilePath);
+         bool readConfigFile(std::string configFilePath);
 
-         bool writeConfigFile(string configFilePath);
+         bool writeConfigFile(std::string configFilePath);
    };
 }
 #endif

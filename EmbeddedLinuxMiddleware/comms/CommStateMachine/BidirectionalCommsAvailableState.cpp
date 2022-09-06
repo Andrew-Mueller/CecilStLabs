@@ -7,6 +7,7 @@
 #include <pthread.h>                            //lint !e537
 
 #include <iostream>
+#include <sstream>
 
 #include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
@@ -56,13 +57,15 @@ using namespace tinyxml2;
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 
-#include "messageParser.h"
+
 
 #include "../../common/stateMachine/IState.h"
 #include "../../common/stateMachine/Transition.h"
 #include "../../common/stateMachine/ITransitionHandler.h"
 #include "../../common/stateMachine/State.h"
 
+#include "CommandList.h"
+#include "MessageParser.h"
 #include "CommsSignals.h"
 #include "BidirectionalCommsAvailableState.h"
 
@@ -71,7 +74,7 @@ namespace CecilStLabs
 
    BidirectionalCommsAvailableState::BidirectionalCommsAvailableState(CommDAL* commDAL,
                                                                       ICommProtocol* protocol,
-                                                                      messageParser& parser)
+                                                                      MessageParser& parser)
      : m_commDAL(commDAL),
        m_protocol(protocol),
        m_parser(parser)
@@ -93,7 +96,7 @@ namespace CecilStLabs
 
    void BidirectionalCommsAvailableState::execute()
    {
-      stringstream debugMsg;
+      std::stringstream debugMsg;
       WebSocketResponse* resp;
 
       if (NULL != m_protocol && m_protocol->IsActive())
@@ -105,7 +108,9 @@ namespace CecilStLabs
          resp = (WebSocketResponse*)m_protocol->getResponse();
          if(resp->getMessageBody().size() > 0)
          {
-            m_parser.parse(ePollForCommands_Msg, resp->getMessageBody());
+            // TODO: define the message id's in an enumerated type.
+            //       for now just passing 0
+            m_parser.parse(0, resp->getMessageBody());
          }
 
          if( !m_protocol->IsConnected() )
@@ -132,16 +137,14 @@ namespace CecilStLabs
                {
                   // go to HTTPS single state, this is some sort of POST or GET with no message body
                   debugMsg.str("");
-                  debugMsg << "BidirectionalCommsAvailableState::execute - switch to HTTPS, this is a POST or GET with no message body" << endl;
+                  debugMsg << "BidirectionalCommsAvailableState::execute - switch to HTTPS, this is a POST or GET with no message body" << std::endl;
                   getLogDriver()->log(debugMsg.str(), LoggingDebug);
 
                   signal(SIGNAL_ONE_HTTP);
                   break;
-
                }
                else
                {
-
                   if( false == sendWebsocketRecord( record ) )
                   {
                      // some error in sending record, flip to HTTPS
@@ -179,7 +182,7 @@ namespace CecilStLabs
 
    bool BidirectionalCommsAvailableState::sendWebsocketRecord( CommRecord* record )
    {
-      stringstream debugMsg;
+      std::stringstream debugMsg;
       bool bSuccess = true;
 
       // attempt to send the record.
@@ -196,7 +199,9 @@ namespace CecilStLabs
       {
          m_protocol->parseResponse(1, 10);
          WebSocketResponse* resp = (WebSocketResponse*)m_protocol->getResponse();
-cout << "after parseResponse - " << resp->getStatusCode() << endl;
+         
+         std::cout << "after parseResponse - " << resp->getStatusCode() << std::endl;
+
          if( WS_STATUS_OK == resp->getStatusCode() || WS_STATUS_ERROR == resp->getStatusCode() )
          {
             // remove the message even if it is error, so it doesn't just repeat forever
@@ -232,7 +237,7 @@ cout << "after parseResponse - " << resp->getStatusCode() << endl;
       {
          // ok to log here because it will only fail in this state once then go to unavailable state
          // don't want to create an endless string of error messages
-         getLogDriver()->log(string("BidirectionalCommsAvailableState::sendWebsocketRecord - error in sendRequest"), LoggingDebug);
+         getLogDriver()->log(std::string("BidirectionalCommsAvailableState::sendWebsocketRecord - error in sendRequest"), LoggingDebug);
 
          // send the signal that communications are unavailable.
          bSuccess = false;

@@ -23,7 +23,7 @@ namespace CecilStLabs
           */
          BidirectionalCommsAvailableState(CommDAL* commDAL,
                                           ICommProtocol* protocol,
-                                          messageParser& parser);
+                                          MessageParser& parser);
 
          /**
           * release any resources used by the state.
@@ -65,7 +65,7 @@ namespace CecilStLabs
          /**
           * message parser for responses to messages.
           */
-         messageParser& m_parser;
+         MessageParser& m_parser;
    };
 
 }

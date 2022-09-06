@@ -52,7 +52,7 @@ namespace CecilStLabs
           (m_method != record.m_method) ||
           (m_url != record.m_url) ||
           (m_message != record.m_message) ||
-          (m_essageID != record.m_messageID) ||
+          (m_messageID != record.m_messageID) ||
           (m_timestamp != record.m_timestamp) ||
           (m_CRC16 != record.m_CRC16))
       {

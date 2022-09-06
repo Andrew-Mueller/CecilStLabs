@@ -20,7 +20,7 @@ namespace CecilStLabs
          CommsUnavailableState(CommDAL* commDAL,
                                ICommProtocol* websocket,
                                ICommProtocol* https,
-                               messageParser& parser,
+                               MessageParser& parser,
                                uint8_t reconnectInterval );
 
          /**
@@ -64,7 +64,7 @@ namespace CecilStLabs
          /**
           * message parser for responses to messages.
           */
-         messageParser& m_parser;
+         MessageParser& m_parser;
 
          /**
           * interval to wait before trying to reconnect

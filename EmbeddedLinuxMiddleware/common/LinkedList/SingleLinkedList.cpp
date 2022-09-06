@@ -1,4 +1,4 @@
-include "../CriticalSection/CriticalSection.h"
+#include "../CriticalSection/CriticalSection.h"
 
 #define EXT_SingleLinkedListCPP
 #include "SingleLinkedList.h"

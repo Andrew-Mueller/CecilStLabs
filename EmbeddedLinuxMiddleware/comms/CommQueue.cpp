@@ -63,6 +63,8 @@ using namespace tinyxml2;
 
 #include "CommStateMachine/CommsSignals.h"
 
+#include "CommStateMachine/CommandList.h"
+#include "CommStateMachine/MessageParser.h"
 #include "CommStateMachine/BidirectionalCommsAvailableState.h"
 #include "CommStateMachine/UnidirectionalCommsAvailableState.h"
 #include "CommStateMachine/CommsUnavailableState.h"
@@ -73,7 +75,7 @@ namespace CecilStLabs
 {
    CommQueue::CommQueue(std::string queueFileName,
                         std::string endpointURL,
-                        messageParser& parser,
+                        MessageParser& parser,
                         ICommProtocol* https,
                         ICommProtocol* websocketprot,
                         uint8_t commsReconnectInterval,
