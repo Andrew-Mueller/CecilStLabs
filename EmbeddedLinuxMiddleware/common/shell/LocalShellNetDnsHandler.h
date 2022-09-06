@@ -35,7 +35,7 @@ namespace CecilStLabs
           * @return
           *
           */
-         virtual eShellHandlers processCommand( const string& command, const char delim, ICommandAction* action );
+         virtual eShellHandlers processCommand( const std::string& command, const char delim, ICommandAction* action );
 
       protected:
          /**
@@ -52,7 +52,7 @@ namespace CecilStLabs
           * @return true if command processed, false if not
           *
           */
-         void cmdShow( const string& command, ICommandAction* action );
+         void cmdShow( const std::string& command, ICommandAction* action );
 
          /**
           * process the command to remove a dns address
@@ -63,7 +63,7 @@ namespace CecilStLabs
           * @return true if command processed, false if not
           *
           */
-         void cmdRemove( const string& command, ICommandAction* action );
+         void cmdRemove( const std::string& command, ICommandAction* action );
 
          /**
           * process the command to add a dns address
@@ -74,16 +74,16 @@ namespace CecilStLabs
           * @return true if command processed, false if not
           *
           */
-         void cmdAdd( const string& command, ICommandAction* action );
+         void cmdAdd( const std::string& command, ICommandAction* action );
 
          /**
           * constants to represent the command strings
           */
-         static const string SHELL_DNS_PROMPT;
-         static const string SHELL_DNS_SHOW;
-         static const string SHELL_DNS_REMOVE;
-         static const string SHELL_DNS_ADD;
-         static const string SHELL_DNS_BACK;
+         static const std::string SHELL_DNS_PROMPT;
+         static const std::string SHELL_DNS_SHOW;
+         static const std::string SHELL_DNS_REMOVE;
+         static const std::string SHELL_DNS_ADD;
+         static const std::string SHELL_DNS_BACK;
    };
 }
 #endif

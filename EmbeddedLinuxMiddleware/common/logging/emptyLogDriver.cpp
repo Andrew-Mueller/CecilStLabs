@@ -1,5 +1,5 @@
 #include <string>
-using namespace std;
+#include <iostream>
 
 #include "../basicTypes.h"
 #include "../util/EnumByName.h"
@@ -42,7 +42,7 @@ namespace CecilStLabs
       std::cout << "emptyLogDriver::Parse() - this parser isn't expected." << " " << message << std::endl;
 
       // create and return an 'empty' LogEntry object.
-      LogEntry entry(LoggingOFF, DateTime(), string(), string());
+      LogEntry entry(LoggingOFF, DateTime(), std::string(), std::string());
       return entry;
    }
 }

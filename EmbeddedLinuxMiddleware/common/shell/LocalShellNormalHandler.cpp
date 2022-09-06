@@ -48,7 +48,7 @@ using namespace tinyxml2;
 #include "LocalShellBaseHandler.h"
 #include "LocalShellNormalHandler.h"
 
-namespace CeecilStLabs
+namespace CecilStLabs
 {
 
    LocalShellNormalHandler::LocalShellNormalHandler( IConfig& config ) :

@@ -23,10 +23,10 @@ namespace CecilStLabs
           * @param delim   the delimiter between parts of command
           * @param action  the type of action like a system call
           *
-          * @return
+          * @return Shell Handler Enumeration as a result of processing the command.
           *
           */
-         virtual eShellHandlers processCommand( const string& command, const char delim, ICommandAction* action );
+         virtual eShellHandlers processCommand (const std::string& command, const char delim, ICommandAction* action);
 
       protected:
 
@@ -40,7 +40,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-         void cmdIP( const string& command, const char delim, ICommandAction* action );
+         void cmdIP (const std::string& command, const char delim, ICommandAction* action);
 
          /**
           * process the subnet command to set or get the subnet address
@@ -50,7 +50,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-         void cmdSubnet( const string& command, const char delim, ICommandAction* action );
+         void cmdSubnet (const std::string& command, const char delim, ICommandAction* action);
 
          /**
           * process the gateway command to set or get the gateway address
@@ -60,7 +60,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-         void cmdGateway( const string& command, const char delim, ICommandAction* action );
+         void cmdGateway (const std::string& command, const char delim, ICommandAction* action);
 
           /**
           * process the url command to set or get the url address
@@ -70,7 +70,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-        void cmdURL( const string& command, const char delim, ICommandAction* action );
+        void cmdURL (const std::string& command, const char delim, ICommandAction* action);
 
          /**
           * process the accessKey command to set or get the access key string
@@ -80,7 +80,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-         void cmdAccessKey( const string& command, const char delim, ICommandAction* action );
+         void cmdAccessKey (const std::string& command, const char delim, ICommandAction* action);
 
          /**
           * process the deviceID command to set or get the device ID string
@@ -90,7 +90,7 @@ namespace CecilStLabs
           * @param action  the type of action like a system call
           *
           */
-         void cmdDeviceId( const string& command, const char delim, ICommandAction* action );
+         void cmdDeviceId (const std::string& command, const char delim, ICommandAction* action);
 
           /**
           * Checks if an IP address is formatted properly
@@ -100,7 +100,7 @@ namespace CecilStLabs
           * @return true if address is valid, false if not
           *
           */
-         bool isValidIpAddress( const string& ipAddress);
+         bool isValidIpAddress (const std::string& ipAddress);
 
 
    };

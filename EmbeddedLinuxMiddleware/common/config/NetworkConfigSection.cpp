@@ -535,14 +535,14 @@ namespace CecilStLabs
       return success;
    }
 
-   bool ExampleConfigSection::readConfigFile(string configFilePath __attribute((unused)))
+   bool NetworkConfigSection::readConfigFile(string configFilePath __attribute((unused)))
    {
       getLogDriver()->Log("NetworkConfigSection::readConfigFile Unimplemented.", LoggingDebug);
 
       return false;
    }
 
-   bool ExampleConfigSection::writeConfigFile(string configFilePath __attribute((unused)))
+   bool NetworkConfigSection::writeConfigFile(string configFilePath __attribute((unused)))
    {
       getLogDriver()->Log("NetworkConfigSection::readConfigFile Unimplemented.", LoggingDebug);
 

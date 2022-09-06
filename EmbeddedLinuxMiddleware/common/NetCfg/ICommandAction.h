@@ -5,11 +5,12 @@ namespace CecilStLabs
 {
    /**
     * Interface for a command action to take.
+    * An Action is some functionality to execute when a command is parsed.
     */
    class ICommandAction
    {
       public:
-         virtual bool execute(const string& command) = 0;
+         virtual bool execute(const std::string& command) = 0;
 
          virtual ~ICommandAction() {};
 

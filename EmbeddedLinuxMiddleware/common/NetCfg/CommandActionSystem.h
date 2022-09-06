@@ -12,7 +12,8 @@ namespace CecilStLabs
          CommandActionSystem();
          virtual ~CommandActionSystem();
 
-         bool execute(const string& command);
+         // implementation of the ICommandAction interface.
+         bool execute(const std::string& command);
 
       protected:
          CommandActionSystem(ICommandAction& copy __attribute__((unused))) {};

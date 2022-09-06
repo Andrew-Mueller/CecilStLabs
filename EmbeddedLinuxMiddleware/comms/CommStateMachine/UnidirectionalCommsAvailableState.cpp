@@ -6,8 +6,8 @@
 
 #include <pthread.h>                            //lint !e537
 
+#include <sstream>
 #include <iostream>
-using namespace std;
 
 #include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
@@ -55,13 +55,15 @@ using namespace tinyxml2;
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 
-#include "messageParser.h"
+
 
 #include "../../common/stateMachine/IState.h"
 #include "../../common/stateMachine/Transition.h"
 #include "../../common/stateMachine/ITransitionHandler.h"
 #include "../../common/stateMachine/State.h"
 
+#include "CommandList.h"
+#include "MessageParser.h"
 #include "CommsSignals.h"
 #include "UnidirectionalCommsAvailableState.h"
 
@@ -73,7 +75,7 @@ namespace CecilStLabs
    UnidirectionalCommsAvailableState::UnidirectionalCommsAvailableState(CommDAL* commDAL,
                                             ICommProtocol* websocket,
                                             ICommProtocol* https,
-                                            messageParser& parser,
+                                            MessageParser& parser,
                                             bool single)
       : m_commDAL(commDAL),
         m_websocketProtocol(websocket),
@@ -98,7 +100,7 @@ namespace CecilStLabs
 
    void UnidirectionalCommsAvailableState::execute()
    {
-      stringstream debugMsg;
+      std::stringstream debugMsg;
       bool bExecSuccess = true;
 
       // send the oldest message until queue is empty.
@@ -111,7 +113,7 @@ namespace CecilStLabs
 
          while (NULL != record)
          {
-            cout << "UnidirectionalCommsAvailableState::execute - found record" << endl;
+            std::cout << "UnidirectionalCommsAvailableState::execute - found record" << std::endl;
 
             // attempt to send the record.
             // NOTE: the Request() method blocks until a response is received, or
@@ -180,7 +182,7 @@ namespace CecilStLabs
             {
                // ok to log here because it will only fail in this state once then go to unavailable state
                // don't want to create an endless string of error messages
-               getLogDriver()->Log(string("UnidirectionalCommsAvailableState::execute - error in sendRequest"), LoggingDebug);
+               getLogDriver()->Log(std::string("UnidirectionalCommsAvailableState::execute - error in sendRequest"), LoggingDebug);
 
                // send the signal that communications are unavailable.
                signal(SIGNAL_NON_HTTP_200);

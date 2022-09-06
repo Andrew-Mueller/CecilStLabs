@@ -11,6 +11,7 @@ namespace CecilStLabs
       IEVT_NONE                = 0,
       IEVT_GENERIC,
 
+      IEVT_SETCONFIG
       // add additional event types to the bottom of the enumeration here
    };
 

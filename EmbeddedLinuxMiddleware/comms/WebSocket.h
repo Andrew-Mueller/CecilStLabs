@@ -87,7 +87,7 @@ namespace CecilStLabs
             /**
              * Maximum number of bytes to receive from the websocket.
              */
-            static const int16_t MAX_RX_BYTES              = MAX_INT16_VALUE;
+            static const int16_t MAX_RX_BYTES              = INT16_MAX;
 
             /**
              * Maximum number of attempts to read bytes from the socket.

@@ -18,8 +18,6 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 
-using namespace std;
-
 #include "../../common/tinyxml/tinyxml2.h"
 using namespace tinyxml2;
 
@@ -52,24 +50,26 @@ using namespace tinyxml2;
 namespace CecilStLabs
 {
    // these need to be removed.
-   LocalShell::LOCAL_USER = "LocalUser";
-   LocalShell::LOCAL_PASSWORD = "password";
+   const std::string LocalShell::LOCAL_USER = "LocalUser";
+   const std::string LocalShell::LOCAL_PASSWORD = "password";
+   const char LocalShell::DELIMS[] = {'\r', '\n'};
 
    #ifdef USE_PAM
       int shell_conv( int num_msg, const struct pam_message **msg, struct pam_response **resp, void *data );
    #endif
 
-   void* thread_func ( void *ptr )
+   void* shellTimeoutThread ( void *ptr )
    {
       bool* enterShell = (bool*)ptr;
 
-      for( int i = SHELL_TIMEOUT_SECONDS; i > 0; i-- )
+      for (int i = LocalShell::SHELL_TIMEOUT_SECONDS; i > 0; i--)
       {
          // check flag for the 's' being entered
          if(true == *enterShell)
          {
             break;
          }
+
          sleep(1);
       }
 
@@ -120,20 +120,18 @@ namespace CecilStLabs
 
    bool LocalShell::executeIntro()
    {
-      cout << endl << "Press 'S' to enter local shell environment" << endl;
-      int ch;
-
+      std::cout << "\nPress 'S' to enter local shell environment" << std::endl;
+      
       m_enterShell = false;
 
       // start thread that will time out the shell and exit
-      pthread_t thread1;
-      pthread_create( &thread1, NULL, thread_func, &m_enterShell );
+      pthread_t timeoutThread;
+      pthread_create( &timeoutThread, NULL, shellTimeoutThread, &m_enterShell );
 
       while(1)
       {
-
-         ch = getc( stdin );
-         if( ch == 's' || ch == 'S')
+         char inputCharacter = getc( stdin );
+         if( inputCharacter == 's' || inputCharacter == 'S')
          {
             m_enterShell = true;
             break;
@@ -142,29 +140,29 @@ namespace CecilStLabs
 
 
       // clear stdin
-      while ((ch = getchar()) != EOF && ch != '\n')
-         ;
+      char inputCharacter;
+      while (((inputCharacter = getchar()) != EOF) && (inputCharacter != '\n'));
 
       return m_enterShell;
    }
 
    void LocalShell::executeShell()
    {
-      char user[32];
+      char user[MAX_USER_LENGTH];
       char *cmd;
       char line[MAX_LENGTH];
       eAuthCode authRet = AUTH_INVALID;
       ICommandAction* commandAction = new CommandActionSystem;
 
 
-      cout << "Starting the LocalShell" << endl;
-      cout << "-----------------------" << endl;
+      std::cout << "Starting the LocalShell\n";
+      std::cout << "-----------------------" << std::endl;
 
       while( authRet != AUTH_VALID )
       {
          // get user name
          printf( "Username: " );
-         fgets(user, 32, stdin);
+         fgets(user, MAX_USER_LENGTH, stdin);
 
          // clear off the carriage return
          user[strlen(user)-1] = 0;
@@ -179,15 +177,14 @@ namespace CecilStLabs
 
       if( AUTH_VALID == authRet )
       {
-         cout << endl;
-         cout << "-----------------------------" << endl;
-         cout << "Type '?' for list of commands" << endl;
-         cout << "Type 'exit' to leave" << endl << endl;
+         std::cout << "\n-----------------------------\n";
+         std::cout << "Type '?' for list of commands\n";
+         std::cout << "Type 'exit' to leave\n" << std::endl;
 
          while (1)
          {
             // show the prompt
-            cout << m_pHandler->getPrompt();
+            std::cout << m_pHandler->getPrompt();
             if( !fgets(line, MAX_LENGTH, stdin) )
             {
                break;
@@ -197,7 +194,7 @@ namespace CecilStLabs
             if( ( cmd = strtok(line, DELIMS) ) )
             {
 
-               string str(cmd);
+               std::string str(cmd);
                eShellHandlers retHandler;
 
                retHandler = processHandler( str, commandAction );
@@ -216,10 +213,10 @@ namespace CecilStLabs
       eAuthCode retval = AUTH_INVALID;
 
       // look for hard-coded user first
-      if( !strcmp( user, LOCAL_USER ) )
+      if( !strcmp( user, LOCAL_USER.c_str() ) )
       {
          char* p = getpass( "Password: " );
-         if( !strcmp( p, LOCAL_PASSWORD) )
+         if( !strcmp( p, LOCAL_PASSWORD.c_str()) )
          {
             retval = AUTH_VALID;
          }
@@ -253,7 +250,7 @@ namespace CecilStLabs
    }
 
    // If there is a derived class, make sure this gets called from overwritten function
-   eShellHandlers LocalShell::processHandler( const string& command, ICommandAction* action )
+   eShellHandlers LocalShell::processHandler( const std::string& command, ICommandAction* action )
    {
       eShellHandlers newHandler = m_pHandler->processCommand( command, ' ', action );
 
@@ -272,7 +269,6 @@ namespace CecilStLabs
       }
 
       return newHandler;
-
    }
 
 

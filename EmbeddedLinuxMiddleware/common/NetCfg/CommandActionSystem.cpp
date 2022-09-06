@@ -21,6 +21,6 @@ namespace CecilStLabs
 
    bool CommandActionSystem::execute(const string& commmand)
    {
-      return (system( commmand.c_str() >= 0)
+      return (system( commmand.c_str()) >= 0);
    }
 }

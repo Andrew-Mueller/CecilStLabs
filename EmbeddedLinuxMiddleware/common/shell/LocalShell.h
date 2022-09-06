@@ -61,7 +61,7 @@ namespace CecilStLabs
           * @return true if command processed, false if not
           *
           */
-         virtual eShellHandlers processHandler( const string& command, ICommandAction* action );
+         virtual eShellHandlers processHandler (const std::string& command, ICommandAction* action);
 
          /**
           * Getter for the configuration
@@ -72,12 +72,14 @@ namespace CecilStLabs
          static const uint8_t SHELL_TIMEOUT_SECONDS = 5;
 
          static const uint16_t MAX_LENGTH = 1024;
-         static const char[2] DELIMS = {'\r', '\n'};
+         static const char DELIMS[2];
 
          // local hard-coded user and password
          // TODO: these need to be removed.
          static const std::string LOCAL_USER;
          static const std::string LOCAL_PASSWORD;
+
+         static const uint8_t MAX_USER_LENGTH = 32;
 
       protected:
 
@@ -89,7 +91,7 @@ namespace CecilStLabs
          /**
           * list of all available handlers
           */
-         vector<LocalShellBaseHandler*> m_vHandlers;
+         std::vector<LocalShellBaseHandler*> m_vHandlers;
 
          /**
           * flag to indicate the shell should be entered to kill timeout

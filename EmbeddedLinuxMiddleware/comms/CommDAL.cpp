@@ -7,7 +7,7 @@
 #include <functional>
 #include <cctype>
 #include <locale>
-using namespace std;
+#include <sstream>
 
 #include "../common/basicTypes.h"               //lint !e761
 #include "../common/util/EnumByName.h"
@@ -154,7 +154,7 @@ namespace CecilStLabs
          }
          else
          {
-            getLogDriver()->log(string("error preparing statement."), LoggingError);
+            getLogDriver()->log(std::string("error preparing statement."), LoggingError);
          }
 
          pthread_mutex_unlock(&m_databaseSemaphore);
@@ -197,7 +197,7 @@ namespace CecilStLabs
             {
                   // an error occurred during execution of the sql statement.
 
-                  stringstream errorMessage("Sqlite Error Deleting a record: ");
+                  std::stringstream errorMessage("Sqlite Error Deleting a record: ");
                   errorMessage << result;
                   getLogDriver()->log(errorMessage.str(), LoggingError);
             }
@@ -239,7 +239,7 @@ namespace CecilStLabs
             {
                // an error occurred during execution of the sql statement.
 
-               string errorLogMessage("Sqlite select error: ");
+               std::string errorLogMessage("Sqlite select error: ");
                errorLogMessage.append(errorMessage);
                getLogDriver()->log(errorLogMessage, LoggingError);
 
@@ -312,7 +312,7 @@ namespace CecilStLabs
          {
             // an error occurred during execution of the sql statement.
 
-            string errorLogMessage("table query error: ");
+            std::string errorLogMessage("table query error: ");
             errorLogMessage.append(errorMessage);
             getLogDriver()->log(errorLogMessage, LoggingError);
 
@@ -344,7 +344,7 @@ namespace CecilStLabs
             {
                // an error occurred during execution of the sql statement.
 
-               string errorLogMessage("table creation error: ");
+               std::string errorLogMessage("table creation error: ");
                errorLogMessage.append(errorMessage);
                getLogDriver()->log(errorLogMessage, LoggingError);
 
@@ -368,7 +368,7 @@ namespace CecilStLabs
             }
             else if (URL_COLUMN_STR == columnNames[i])
             {
-               m_currentRecord.setURL(string(columnTexts[i]));
+               m_currentRecord.setURL(std::string(columnTexts[i]));
             }
             else if (METHOD_COLUMN_STR == columnNames[i])
             {
@@ -376,17 +376,17 @@ namespace CecilStLabs
             }
             else if (MESSAGE_COLUMN_STR == columnNames[i])
             {
-               m_currentRecord.setMessage(string(columnTexts[i]));
+               m_currentRecord.setMessage(std::string(columnTexts[i]));
             }
             else if (COMM_MSG_ID_STR == columnNames[i])
             {
-               m_currentRecord.setCommMessageID((eCommMessage)(uint32_t)atoi(columnTexts[i]));
+               m_currentRecord.setMessageID((uint32_t)atoi(columnTexts[i]));
             }
             else if (TIMESTAMP_COLUMN_STR == columnNames[i])
             {
                // NOTE: the timestamp is simply stored in the database as a UTC time string.
                DateTime timestamp;
-               timestamp.fromTimeString(string(columnTexts[i]));
+               timestamp.fromTimeString(std::string(columnTexts[i]));
 
                m_currentRecord.setTimestamp(timestamp);
             }

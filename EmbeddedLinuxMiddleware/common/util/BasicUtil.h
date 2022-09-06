@@ -84,7 +84,7 @@ namespace CecilStLabs
           *
           * @param message String message to log to the log driver.
           */
-         static void log(string message);
+         static void log(std::string message);
 
          /**
           * Gets the number of clock ticks per second of the system's processor.

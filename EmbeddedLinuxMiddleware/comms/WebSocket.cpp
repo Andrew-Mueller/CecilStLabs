@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -168,7 +169,7 @@ namespace CecilStLabs
 
       frame.setMessage((const char*)buffer);
       frame.encode();
-      unsigned char encodedBuffer[MAX_UINT16_VALUE];
+      unsigned char encodedBuffer[UINT16_MAX];
       memcpy(encodedBuffer, frame.getCodedMessage(), frame.getLengthOfCodedMessage());
       bytesSent = Socket::SockWrite(encodedBuffer, frame.getLengthOfCodedMessage());
 
@@ -205,7 +206,7 @@ namespace CecilStLabs
 
                   if (0 != numRead)
                   {
-                     rxData = (RXData*)rxDataAddy;
+                     rxData = reinterpret_cast<RXData*>(rxDataAddy);
                      pthread_mutex_unlock(&m_rxSemaphore);
                      break;
                   }
@@ -473,7 +474,7 @@ namespace CecilStLabs
          {
             // stuff the address of the received frame into the Rx ring
             // buffer for consumption by the main thread.
-            uint32_t rxDataAddy = (uint32_t)receivedData;
+            uintptr_t rxDataAddy = reinterpret_cast<uintptr_t>(receivedData);
             m_rxFrameBuffer.put(&rxDataAddy, 1);
          }
 

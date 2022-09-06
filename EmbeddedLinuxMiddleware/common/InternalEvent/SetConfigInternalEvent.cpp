@@ -9,7 +9,7 @@
 #include <cstdio>
 #include <cstring>
 #include <cerrno>
-#include <cunistd>
+#include <unistd.h>
 #include <arpa/inet.h>
 
 using namespace std;
@@ -48,7 +48,7 @@ namespace CecilStLabs
       // intentionally left blank
    }
    
-   void SetConfigInternalEvent::setData( const uint8_t* data, const int size )
+   void SetConfigInternalEvent::setData( const uint8_t* data, const uint8_t size )
    {
       if( size >= MAX_EVENT_DATA )
       {
@@ -88,11 +88,5 @@ namespace CecilStLabs
          m_name = elems[0];
          m_value = elems[1];
       }
-      
    }
-
-
- 
 }
-
-

@@ -7,14 +7,12 @@
 
 
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <arpa/inet.h>
-
-using namespace std;
 
 #include "../../common/tinyxml/tinyxml2.h"
 using namespace tinyxml2;
@@ -29,7 +27,6 @@ using namespace tinyxml2;
 #include "../../common/logging/ILogDriver.h"
 #include "../../common/logging/emptyLogDriver.h"
 #include "../../common/logging/ILoggable.h"
-#include "../../common/logging/LogEntryEvents.h"
 
 #include "../../common/CriticalSection/CriticalSection.h"
 
@@ -193,7 +190,6 @@ namespace CecilStLabs
                   {
                      bret = true;
                   }
-
                }
                else
                {

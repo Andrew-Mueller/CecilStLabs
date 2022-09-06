@@ -163,7 +163,7 @@ namespace CecilStLabs
          /**
           * The maximum number of bytes in the encoded or decoded message.
           */
-         static const int16_t MAX_BUFFER_SIZE     = MAX_INT16_VALUE;
+         static const int16_t MAX_BUFFER_SIZE     = INT16_MAX;
 
          /**
           * Defines the interpretation of the 'payload data'.

@@ -85,7 +85,7 @@ namespace CecilStLabs
          /**
           * This is the interpretation of the status code.
           */
-         string m_reasonPhrase;
+         std::string m_reasonPhrase;
 
          // TODO: if needed add general headers, response headers, and entity headers.
          //       these are being left off for now for simplicity.
@@ -96,7 +96,7 @@ namespace CecilStLabs
           *
           * @param statusLine_str String containing the response's status line.
           */
-         void parseStatusLine(string statusLine_str);
+         void parseStatusLine(std::string statusLine_str);
 
          /**
           * Parses out the specific protocol version given the sub-string from
@@ -106,7 +106,7 @@ namespace CecilStLabs
           * @param protocol_str Substring containing the protocol version from
           *                     the response.
           */
-         void parseProtocolVersion(string protocol_str);
+         void parseProtocolVersion(std::string protocol_str);
 
          /**
           * Parses out the status code given the sub-string from the response
@@ -116,7 +116,7 @@ namespace CecilStLabs
           * @param statusCode_str Substring containing the HTTP status code from
           *                       the response.
           */
-         void parseStatusCode(string statusCode_str);
+         void parseStatusCode(std::string statusCode_str);
 
          /**
           * Find the double carriage-return line-feed in the string specified.
@@ -124,7 +124,7 @@ namespace CecilStLabs
           * @param str The string to find the back-to-back CRLF in.
           * @return The position where the two CRLF are found in the string.
           */
-         size_t findDoubleLineBreak(string str);
+         size_t findDoubleLineBreak(std::string str);
    };
 }
 

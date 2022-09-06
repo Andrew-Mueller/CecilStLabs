@@ -29,13 +29,11 @@ using namespace tinyxml2;
 #include "../../common/logging/ILogDriver.h"
 #include "../../common/logging/emptyLogDriver.h"
 #include "../../common/logging/ILoggable.h"
-#include "../../common/logging/LogEntryEvents.h"
 
 #include "../../common/config/IConfig.h"
 #include "../../common/config/IConfigAction.h"
 #include "../../common/config/ConfigActionRead.h"
 #include "../../common/config/ConfigActionWrite.h"
-#include "../../common/config/AgentConfigSection.h"
 
 
 #include "../../common/NetCfg/ICommandAction.h"

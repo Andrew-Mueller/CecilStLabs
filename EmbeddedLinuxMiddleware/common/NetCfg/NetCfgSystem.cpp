@@ -26,7 +26,6 @@ using namespace tinyxml2;
 #include "../../common/logging/ILogDriver.h"
 #include "../../common/logging/emptyLogDriver.h"
 #include "../../common/logging/ILoggable.h"
-#include "../../common/logging/LogEntryEvents.h"
 
 #include "../../common/config/IConfig.h"
 #include "../../common/config/IConfigAction.h"
@@ -61,6 +60,8 @@ namespace CecilStLabs
 
       if( isValidIpAddress( ip ) )
       {
+         // TODO: move these 'magic commands'.  LOL, they are like magic numbers
+         //       except words instead of numbers.
          std::string cmd = "ifconfig eth0 " + ip + " netmask " + m_configuration.getValueByName( NetworkConfigSection::XMLTAG_SUBNET );
 
          // TODO: deal with the case where action-execute fails or produces and error?

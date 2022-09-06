@@ -29,7 +29,6 @@ using namespace tinyxml2;
 #include "../../common/logging/ILogDriver.h"
 #include "../../common/logging/emptyLogDriver.h"
 #include "../../common/logging/ILoggable.h"
-#include "../../common/logging/LogEntryEvents.h"
 
 #include "../../common/CriticalSection/CriticalSection.h"
 

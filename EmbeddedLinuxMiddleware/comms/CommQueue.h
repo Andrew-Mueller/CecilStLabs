@@ -25,7 +25,7 @@ namespace CecilStLabs
           */
          CommQueue(std::string queueFileName,
                    std::string endpointURL,
-                   messageParser& parser,
+                   MessageParser& parser,
                    ICommProtocol* https,
                    ICommProtocol* websocketprot,
                    uint8_t commsReconnectInterval,

@@ -6,8 +6,8 @@
 
 #include <pthread.h>                            //lint !e537
 
+#include <sstream>
 #include <iostream>
-using namespace std;
 
 #include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
@@ -63,6 +63,8 @@ using namespace tinyxml2;
 #include "../../common/stateMachine/ITransitionHandler.h"
 #include "../../common/stateMachine/State.h"
 
+#include "CommandList.h"
+#include "MessageParser.h"
 #include "CommsSignals.h"
 #include "CommsUnavailableState.h"
 
@@ -71,7 +73,7 @@ namespace CecilStLabs
    CommsUnavailableState::CommsUnavailableState(CommDAL* commDAL,
                                                 ICommProtocol* websocket,
                                                 ICommProtocol* https,
-                                                messageParser& parser,
+                                                MessageParser& parser,
                                                 uint8_t reconnectInterval
                                                )
       : m_commDAL(commDAL),
@@ -105,7 +107,7 @@ namespace CecilStLabs
 
    void CommsUnavailableState::execute()
    {
-      stringstream debugMsg;
+      std::stringstream debugMsg;
       bool tryHTTPS = true;
 
       // only try to reconnect if the interval has expired
@@ -125,7 +127,9 @@ namespace CecilStLabs
 
             if(resp->getMessageBody().size() > 0)
             {
-               m_parser.parse(ePollForCommands_Msg, resp->getMessageBody());
+               // TODO: the message IDs need to be defined
+               //       0 is a placeholder for now.
+               m_parser.parse(0, resp->getMessageBody());
             }
 
             if( m_websocketProtocol->IsConnected() && WS_STATUS_OK == resp->getStatusCode() )
@@ -217,7 +221,7 @@ namespace CecilStLabs
                {
                   // Log this as debug level. the level won't be on debug unless someones is actually debugging an issue
                   // Otherwise this could lead to log getting filled with errors
-                  getLogDriver()->log(string("CommsUnavailableState::execute - error in sendRequest"), LoggingDebug);
+                  getLogDriver()->log(std::string("CommsUnavailableState::execute - error in sendRequest"), LoggingDebug);
                }
 
             }
@@ -225,12 +229,12 @@ namespace CecilStLabs
             {
                if (NULL == record)
                {
-                  getLogDriver()->log(string("CommsUnavailableState::execute - record is null"), LoggingDebug);
+                  getLogDriver()->log(std::string("CommsUnavailableState::execute - record is null"), LoggingDebug);
                }
 
                if (NULL == m_httpsProtocol)
                {
-                  getLogDriver()->log(string("CommsUnavailableState::execute - protocol is empty."), LoggingDebug);
+                  getLogDriver()->log(std::string("CommsUnavailableState::execute - protocol is empty."), LoggingDebug);
                }
             }
          }
