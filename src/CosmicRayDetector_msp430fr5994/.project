@@ -24,4 +24,26 @@
 		<nature>org.eclipse.cdt.core.ccnature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>HAL</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>HAL/Memory</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>HAL/Memory/Memory.cpp</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/HAL/Memory.cpp</locationURI>
+		</link>
+		<link>
+			<name>HAL/Memory/Memory.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/HAL/Memory.h</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

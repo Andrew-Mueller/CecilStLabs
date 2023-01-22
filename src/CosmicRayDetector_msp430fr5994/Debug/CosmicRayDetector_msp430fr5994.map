@@ -1,7 +1,7 @@
 ******************************************************************************
-                  MSP430 Linker Unix v18.12.1                  
+                  MSP430 Linker Unix v21.6.0                   
 ******************************************************************************
->> Linked Tue Sep  6 02:17:03 2022
+>> Linked Fri Oct 28 07:47:40 2022
 
 OUTPUT FILE NAME:   <CosmicRayDetector_msp430fr5994.out>
 ENTRY POINT SYMBOL: "_c_int00_noinit_noargs"  address: 00004000
@@ -80,7 +80,7 @@ MEMORY CONFIGURATION
   INT53                 0000fffa   00000002  00000002  00000000  RWIX
   INT54                 0000fffc   00000002  00000002  00000000  RWIX
   RESET                 0000fffe   00000002  00000002  00000000  RWIX
-  FRAM2                 00010000   00034000  0000003c  00033fc4  RWIX
+  FRAM2                 00010000   00034000  00000038  00033fc8  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -106,7 +106,7 @@ section   page    origin      length       input sections
 .ipe:_isr 
 *          0    00004000    00000000     UNINITIALIZED
 
-.cinit     0    00004000    00000000     UNINITIALIZED
+.cinit     0    00004000    00000000     
 
 .binit     0    00004000    00000000     
 
@@ -115,11 +115,11 @@ section   page    origin      length       input sections
 
 .text:_isr 
 *          0    00004000    0000001c     
-                  00004000    00000014     rts430x_lc_rd_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noinit_noargs)
+                  00004000    00000014     rts430x_lc_ld_eabi.lib : boot.c.obj (.text:_isr:_c_int00_noinit_noargs)
                   00004014    00000008                            : isr_trap.asm.obj (.text:_isr:__TI_ISR_TRAP)
 
 .stack     0    00002b60    000000a0     UNINITIALIZED
-                  00002b60    00000004     rts430x_lc_rd_eabi.lib : boot.c.obj (.stack)
+                  00002b60    00000004     rts430x_lc_ld_eabi.lib : boot.c.obj (.stack)
                   00002b64    0000009c     --HOLE--
 
 $fill000   0    0000ff80    00000004     
@@ -132,146 +132,146 @@ $fill002   0    0000ff88    00000008
                   0000ff88    00000008     --HOLE-- [fill = ffff]
 
 LEA        0    0000ffb4    00000002     
-                  0000ffb4    00000002     rts430x_lc_rd_eabi.lib : int18.asm.obj (.int18)
+                  0000ffb4    00000002     rts430x_lc_ld_eabi.lib : int18.asm.obj (.int18)
 
 PORT8      0    0000ffb6    00000002     
-                  0000ffb6    00000002     rts430x_lc_rd_eabi.lib : int19.asm.obj (.int19)
+                  0000ffb6    00000002     rts430x_lc_ld_eabi.lib : int19.asm.obj (.int19)
 
 PORT7      0    0000ffb8    00000002     
-                  0000ffb8    00000002     rts430x_lc_rd_eabi.lib : int20.asm.obj (.int20)
+                  0000ffb8    00000002     rts430x_lc_ld_eabi.lib : int20.asm.obj (.int20)
 
 EUSCI_B3   0    0000ffba    00000002     
-                  0000ffba    00000002     rts430x_lc_rd_eabi.lib : int21.asm.obj (.int21)
+                  0000ffba    00000002     rts430x_lc_ld_eabi.lib : int21.asm.obj (.int21)
 
 EUSCI_B2   0    0000ffbc    00000002     
-                  0000ffbc    00000002     rts430x_lc_rd_eabi.lib : int22.asm.obj (.int22)
+                  0000ffbc    00000002     rts430x_lc_ld_eabi.lib : int22.asm.obj (.int22)
 
 EUSCI_B1   0    0000ffbe    00000002     
-                  0000ffbe    00000002     rts430x_lc_rd_eabi.lib : int23.asm.obj (.int23)
+                  0000ffbe    00000002     rts430x_lc_ld_eabi.lib : int23.asm.obj (.int23)
 
 EUSCI_A3   0    0000ffc0    00000002     
-                  0000ffc0    00000002     rts430x_lc_rd_eabi.lib : int24.asm.obj (.int24)
+                  0000ffc0    00000002     rts430x_lc_ld_eabi.lib : int24.asm.obj (.int24)
 
 EUSCI_A2   0    0000ffc2    00000002     
-                  0000ffc2    00000002     rts430x_lc_rd_eabi.lib : int25.asm.obj (.int25)
+                  0000ffc2    00000002     rts430x_lc_ld_eabi.lib : int25.asm.obj (.int25)
 
 PORT6      0    0000ffc4    00000002     
-                  0000ffc4    00000002     rts430x_lc_rd_eabi.lib : int26.asm.obj (.int26)
+                  0000ffc4    00000002     rts430x_lc_ld_eabi.lib : int26.asm.obj (.int26)
 
 PORT5      0    0000ffc6    00000002     
-                  0000ffc6    00000002     rts430x_lc_rd_eabi.lib : int27.asm.obj (.int27)
+                  0000ffc6    00000002     rts430x_lc_ld_eabi.lib : int27.asm.obj (.int27)
 
 TIMER4_A1 
 *          0    0000ffc8    00000002     
-                  0000ffc8    00000002     rts430x_lc_rd_eabi.lib : int28.asm.obj (.int28)
+                  0000ffc8    00000002     rts430x_lc_ld_eabi.lib : int28.asm.obj (.int28)
 
 TIMER4_A0 
 *          0    0000ffca    00000002     
-                  0000ffca    00000002     rts430x_lc_rd_eabi.lib : int29.asm.obj (.int29)
+                  0000ffca    00000002     rts430x_lc_ld_eabi.lib : int29.asm.obj (.int29)
 
 AES256     0    0000ffcc    00000002     
-                  0000ffcc    00000002     rts430x_lc_rd_eabi.lib : int30.asm.obj (.int30)
+                  0000ffcc    00000002     rts430x_lc_ld_eabi.lib : int30.asm.obj (.int30)
 
 RTC_C      0    0000ffce    00000002     
-                  0000ffce    00000002     rts430x_lc_rd_eabi.lib : int31.asm.obj (.int31)
+                  0000ffce    00000002     rts430x_lc_ld_eabi.lib : int31.asm.obj (.int31)
 
 PORT4      0    0000ffd0    00000002     
-                  0000ffd0    00000002     rts430x_lc_rd_eabi.lib : int32.asm.obj (.int32)
+                  0000ffd0    00000002     rts430x_lc_ld_eabi.lib : int32.asm.obj (.int32)
 
 PORT3      0    0000ffd2    00000002     
-                  0000ffd2    00000002     rts430x_lc_rd_eabi.lib : int33.asm.obj (.int33)
+                  0000ffd2    00000002     rts430x_lc_ld_eabi.lib : int33.asm.obj (.int33)
 
 TIMER3_A1 
 *          0    0000ffd4    00000002     
-                  0000ffd4    00000002     rts430x_lc_rd_eabi.lib : int34.asm.obj (.int34)
+                  0000ffd4    00000002     rts430x_lc_ld_eabi.lib : int34.asm.obj (.int34)
 
 TIMER3_A0 
 *          0    0000ffd6    00000002     
-                  0000ffd6    00000002     rts430x_lc_rd_eabi.lib : int35.asm.obj (.int35)
+                  0000ffd6    00000002     rts430x_lc_ld_eabi.lib : int35.asm.obj (.int35)
 
 PORT2      0    0000ffd8    00000002     
-                  0000ffd8    00000002     rts430x_lc_rd_eabi.lib : int36.asm.obj (.int36)
+                  0000ffd8    00000002     rts430x_lc_ld_eabi.lib : int36.asm.obj (.int36)
 
 TIMER2_A1 
 *          0    0000ffda    00000002     
-                  0000ffda    00000002     rts430x_lc_rd_eabi.lib : int37.asm.obj (.int37)
+                  0000ffda    00000002     rts430x_lc_ld_eabi.lib : int37.asm.obj (.int37)
 
 TIMER2_A0 
 *          0    0000ffdc    00000002     
-                  0000ffdc    00000002     rts430x_lc_rd_eabi.lib : int38.asm.obj (.int38)
+                  0000ffdc    00000002     rts430x_lc_ld_eabi.lib : int38.asm.obj (.int38)
 
 PORT1      0    0000ffde    00000002     
-                  0000ffde    00000002     rts430x_lc_rd_eabi.lib : int39.asm.obj (.int39)
+                  0000ffde    00000002     rts430x_lc_ld_eabi.lib : int39.asm.obj (.int39)
 
 TIMER1_A1 
 *          0    0000ffe0    00000002     
-                  0000ffe0    00000002     rts430x_lc_rd_eabi.lib : int40.asm.obj (.int40)
+                  0000ffe0    00000002     rts430x_lc_ld_eabi.lib : int40.asm.obj (.int40)
 
 TIMER1_A0 
 *          0    0000ffe2    00000002     
-                  0000ffe2    00000002     rts430x_lc_rd_eabi.lib : int41.asm.obj (.int41)
+                  0000ffe2    00000002     rts430x_lc_ld_eabi.lib : int41.asm.obj (.int41)
 
 DMA        0    0000ffe4    00000002     
-                  0000ffe4    00000002     rts430x_lc_rd_eabi.lib : int42.asm.obj (.int42)
+                  0000ffe4    00000002     rts430x_lc_ld_eabi.lib : int42.asm.obj (.int42)
 
 EUSCI_A1   0    0000ffe6    00000002     
-                  0000ffe6    00000002     rts430x_lc_rd_eabi.lib : int43.asm.obj (.int43)
+                  0000ffe6    00000002     rts430x_lc_ld_eabi.lib : int43.asm.obj (.int43)
 
 TIMER0_A1 
 *          0    0000ffe8    00000002     
-                  0000ffe8    00000002     rts430x_lc_rd_eabi.lib : int44.asm.obj (.int44)
+                  0000ffe8    00000002     rts430x_lc_ld_eabi.lib : int44.asm.obj (.int44)
 
 TIMER0_A0 
 *          0    0000ffea    00000002     
-                  0000ffea    00000002     rts430x_lc_rd_eabi.lib : int45.asm.obj (.int45)
+                  0000ffea    00000002     rts430x_lc_ld_eabi.lib : int45.asm.obj (.int45)
 
 ADC12_B    0    0000ffec    00000002     
-                  0000ffec    00000002     rts430x_lc_rd_eabi.lib : int46.asm.obj (.int46)
+                  0000ffec    00000002     rts430x_lc_ld_eabi.lib : int46.asm.obj (.int46)
 
 EUSCI_B0   0    0000ffee    00000002     
-                  0000ffee    00000002     rts430x_lc_rd_eabi.lib : int47.asm.obj (.int47)
+                  0000ffee    00000002     rts430x_lc_ld_eabi.lib : int47.asm.obj (.int47)
 
 EUSCI_A0   0    0000fff0    00000002     
-                  0000fff0    00000002     rts430x_lc_rd_eabi.lib : int48.asm.obj (.int48)
+                  0000fff0    00000002     rts430x_lc_ld_eabi.lib : int48.asm.obj (.int48)
 
 WDT        0    0000fff2    00000002     
-                  0000fff2    00000002     rts430x_lc_rd_eabi.lib : int49.asm.obj (.int49)
+                  0000fff2    00000002     rts430x_lc_ld_eabi.lib : int49.asm.obj (.int49)
 
 TIMER0_B1 
 *          0    0000fff4    00000002     
-                  0000fff4    00000002     rts430x_lc_rd_eabi.lib : int50.asm.obj (.int50)
+                  0000fff4    00000002     rts430x_lc_ld_eabi.lib : int50.asm.obj (.int50)
 
 TIMER0_B0 
 *          0    0000fff6    00000002     
-                  0000fff6    00000002     rts430x_lc_rd_eabi.lib : int51.asm.obj (.int51)
+                  0000fff6    00000002     rts430x_lc_ld_eabi.lib : int51.asm.obj (.int51)
 
 COMP_E     0    0000fff8    00000002     
-                  0000fff8    00000002     rts430x_lc_rd_eabi.lib : int52.asm.obj (.int52)
+                  0000fff8    00000002     rts430x_lc_ld_eabi.lib : int52.asm.obj (.int52)
 
 UNMI       0    0000fffa    00000002     
-                  0000fffa    00000002     rts430x_lc_rd_eabi.lib : int53.asm.obj (.int53)
+                  0000fffa    00000002     rts430x_lc_ld_eabi.lib : int53.asm.obj (.int53)
 
 SYSNMI     0    0000fffc    00000002     
-                  0000fffc    00000002     rts430x_lc_rd_eabi.lib : int54.asm.obj (.int54)
+                  0000fffc    00000002     rts430x_lc_ld_eabi.lib : int54.asm.obj (.int54)
 
 .reset     0    0000fffe    00000002     
-                  0000fffe    00000002     rts430x_lc_rd_eabi.lib : boot.c.obj (.reset)
+                  0000fffe    00000002     rts430x_lc_ld_eabi.lib : boot.c.obj (.reset)
 
-.text      0    00010000    0000003c     
-                  00010000    00000032     main.obj (.text:main)
-                  00010032    00000006     rts430x_lc_rd_eabi.lib : exit.c.obj (.text:abort)
-                  00010038    00000004                            : pre_init.c.obj (.text:_system_pre_init)
+.text      0    00010000    00000038     
+                  00010000    0000002e     main.obj (.text:main)
+                  0001002e    00000006     rts430x_lc_ld_eabi.lib : exit.c.obj (.text:abort)
+                  00010034    00000004                            : pre_init.c.obj (.text:_system_pre_init)
 
 MODULE SUMMARY
 
        Module             code   ro data   rw data
        ------             ----   -------   -------
     ./
-       main.obj           50     0         0      
+       main.obj           46     0         0      
     +--+------------------+------+---------+---------+
-       Total:             50     0         0      
+       Total:             46     0         0      
                                                   
-    /Applications/ti/ccs901/ccs/tools/compiler/ti-cgt-msp430_18.12.1.LTS/lib/rts430x_lc_rd_eabi.lib
+    /Applications/ti/ccs1200/ccs/tools/compiler/ti-cgt-msp430_21.6.0.LTS/lib/rts430x_lc_ld_eabi.lib
        boot.c.obj         20     2         0      
        isr_trap.asm.obj   8      0         0      
        exit.c.obj         6      0         0      
@@ -318,7 +318,7 @@ MODULE SUMMARY
                                                   
        Stack:             0      0         160    
     +--+------------------+------+---------+---------+
-       Grand Total:       88     76        160    
+       Grand Total:       84     76        160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -586,7 +586,7 @@ address   name
 000004bc  BIN2BCD               
 000004bd  BIN2BCD_H             
 000004bc  BIN2BCD_L             
-00010032  C$$EXIT               
+0001002e  C$$EXIT               
 0000043e  CAPTIO0CTL            
 0000043f  CAPTIO0CTL_H          
 0000043e  CAPTIO0CTL_L          
@@ -1015,6 +1015,19 @@ address   name
 0000026b  P8SEL0                
 0000026d  P8SEL1                
 00000277  P8SELC                
+00000284  P9DIR                 
+0000029a  P9IE                  
+00000298  P9IES                 
+0000029c  P9IFG                 
+00000280  P9IN                  
+0000028e  P9IV                  
+0000028f  P9IV_H                
+0000028e  P9IV_L                
+00000282  P9OUT                 
+00000286  P9REN                 
+0000028a  P9SEL0                
+0000028c  P9SEL1                
+00000296  P9SELC                
 00000204  PADIR                 
 00000205  PADIR_H               
 00000204  PADIR_L               
@@ -1135,6 +1148,36 @@ address   name
 00000276  PDSELC                
 00000277  PDSELC_H              
 00000276  PDSELC_L              
+00000284  PEDIR                 
+00000285  PEDIR_H               
+00000284  PEDIR_L               
+0000029a  PEIE                  
+00000298  PEIES                 
+00000299  PEIES_H               
+00000298  PEIES_L               
+0000029b  PEIE_H                
+0000029a  PEIE_L                
+0000029c  PEIFG                 
+0000029d  PEIFG_H               
+0000029c  PEIFG_L               
+00000280  PEIN                  
+00000281  PEIN_H                
+00000280  PEIN_L                
+00000282  PEOUT                 
+00000283  PEOUT_H               
+00000282  PEOUT_L               
+00000286  PEREN                 
+00000287  PEREN_H               
+00000286  PEREN_L               
+0000028a  PESEL0                
+0000028b  PESEL0_H              
+0000028a  PESEL0_L              
+0000028c  PESEL1                
+0000028d  PESEL1_H              
+0000028c  PESEL1_L              
+00000296  PESELC                
+00000297  PESELC_H              
+00000296  PESELC_L              
 00000324  PJDIR                 
 00000325  PJDIR_H               
 00000324  PJDIR_L               
@@ -1827,6 +1870,9 @@ address   name
 0000015c  WDTCTL_L              
 00002c00  __STACK_END           
 000000a0  __STACK_SIZE          
+00004000  __TI_CINIT_Base       
+00004000  __TI_CINIT_Limit      
+00004000  __TI_CINIT_Warm       
 00004014  __TI_ISR_TRAP         
 0000ffb4  __TI_int18            
 0000ffb6  __TI_int19            
@@ -1872,8 +1918,8 @@ ffffffff  __c_args__
 00004000  _c_int00_noinit_noargs
 0000fffe  _reset_vector         
 00002b60  _stack                
-00010038  _system_pre_init      
-00010032  abort                 
+00010034  _system_pre_init      
+0001002e  abort                 
 00004000  fram_ipe_end          
 00004000  fram_ipe_start        
 00004000  fram_rw_start         
@@ -2206,6 +2252,49 @@ address   name
 0000027e  P8IV                  
 0000027e  P8IV_L                
 0000027f  P8IV_H                
+00000280  P9IN                  
+00000280  PEIN                  
+00000280  PEIN_L                
+00000281  PEIN_H                
+00000282  P9OUT                 
+00000282  PEOUT                 
+00000282  PEOUT_L               
+00000283  PEOUT_H               
+00000284  P9DIR                 
+00000284  PEDIR                 
+00000284  PEDIR_L               
+00000285  PEDIR_H               
+00000286  P9REN                 
+00000286  PEREN                 
+00000286  PEREN_L               
+00000287  PEREN_H               
+0000028a  P9SEL0                
+0000028a  PESEL0                
+0000028a  PESEL0_L              
+0000028b  PESEL0_H              
+0000028c  P9SEL1                
+0000028c  PESEL1                
+0000028c  PESEL1_L              
+0000028d  PESEL1_H              
+0000028e  P9IV                  
+0000028e  P9IV_L                
+0000028f  P9IV_H                
+00000296  P9SELC                
+00000296  PESELC                
+00000296  PESELC_L              
+00000297  PESELC_H              
+00000298  P9IES                 
+00000298  PEIES                 
+00000298  PEIES_L               
+00000299  PEIES_H               
+0000029a  P9IE                  
+0000029a  PEIE                  
+0000029a  PEIE_L                
+0000029b  PEIE_H                
+0000029c  P9IFG                 
+0000029c  PEIFG                 
+0000029c  PEIFG_L               
+0000029d  PEIFG_H               
 00000320  PJIN                  
 00000320  PJIN_L                
 00000321  PJIN_H                
@@ -3387,6 +3476,9 @@ address   name
 00000afe  LEAIVH                
 00002b60  _stack                
 00002c00  __STACK_END           
+00004000  __TI_CINIT_Base       
+00004000  __TI_CINIT_Limit      
+00004000  __TI_CINIT_Warm       
 00004000  _c_int00_noinit_noargs
 00004000  fram_ipe_end          
 00004000  fram_ipe_start        
@@ -3432,12 +3524,12 @@ address   name
 0000fffc  __TI_int54            
 0000fffe  _reset_vector         
 00010000  main                  
-00010032  C$$EXIT               
-00010032  abort                 
-00010038  _system_pre_init      
+0001002e  C$$EXIT               
+0001002e  abort                 
+00010034  _system_pre_init      
 ffffffff  __TI_pprof_out_hndl   
 ffffffff  __TI_prof_data_size   
 ffffffff  __TI_prof_data_start  
 ffffffff  __c_args__            
 
-[1554 symbols]
+[1600 symbols]
