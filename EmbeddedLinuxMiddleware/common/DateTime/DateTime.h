@@ -71,7 +71,7 @@ namespace CecilStLabs
           * datetime objects are equivalent.
           *
           * @param copy DateTime to compare against.
-          * @return True if the two DateTimes are equivelent. False if they do not.
+          * @return True if the two DateTimes are equivalent. False if they do not.
           */
          bool operator==(const DateTime& rhs) const;
          bool operator!=(const DateTime& rhs) const;

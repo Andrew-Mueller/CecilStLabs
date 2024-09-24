@@ -53,6 +53,7 @@ namespace CecilStLabs
 
          /**
           * Send the specified message to the http server.
+          *
           * @param message Data to send to the server.
           * @return True if the message was sent successfully, False if an error occurred.
           */
@@ -86,7 +87,6 @@ namespace CecilStLabs
           *
           * @return True if it is connected, false if it is not.
           */
-
          bool IsEthernetConnected();
 
          /**
@@ -146,6 +146,8 @@ namespace CecilStLabs
           * Semaphore used to keep debug print output strings from stomping on top of
           * each other (debug print cout and printf are not re-entrant and uses internal
           * variables to do its work.
+          *
+          * TODO: this doesn't feel like it belongs here, but should just be in the debug print objects.
           */
          pthread_mutex_t m_printSem;
 

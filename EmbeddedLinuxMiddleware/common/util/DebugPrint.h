@@ -1,5 +1,5 @@
-#ifndef DEBUGPRINT_H_
-#define DEBUGPRINT_H_
+#ifndef DEBUGPRINT_H
+#define DEBUGPRINT_H
 
 namespace CecilStLabs
 {
@@ -57,7 +57,7 @@ namespace CecilStLabs
          /**
           * Adds the specified appender to this debug print class.
           *
-          * @param appender
+          * @param appender Concrete implementation of the appender to log.
           */
          void addLogAppender(IAppender* appender);
 
@@ -80,7 +80,7 @@ namespace CecilStLabs
 
          /**
           * The mask used to filter debug messages to print.  If a feature's
-          * Print Mask is set, the message will be print.
+          * Print Mask is set, the message will be printed.
           */
          eFeatureCategory m_currFeatureCategory;
 

@@ -135,7 +135,7 @@ namespace CecilStLabs
 
          if (LoggingOFF != logEntry.getLogLevel())
          {
-             // post the newly parsed message to jetstream.
+             // post the newly parsed message to the server.
              m_logEntryEvent.SetLogEntry(logEntry);
              m_logEntryEvent.Post();
          }

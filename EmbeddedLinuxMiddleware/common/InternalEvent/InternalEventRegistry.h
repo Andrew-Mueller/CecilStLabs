@@ -6,6 +6,8 @@ namespace CecilStLabs
 {   
    /**
     * API to handle internal events
+    * TODO: this should be refactored to use the threading abstraction and critical
+    *       sections used by the rest of the library for consistency.
     */   
    class InternalEventRegistry : public ILoggable
    {
@@ -34,7 +36,7 @@ namespace CecilStLabs
           * Register to receive a specific event
           * 
           * @param type    the event type to watch for  
-          * @param handler the handler to call when event is recieved  
+          * @param handler the handler to call when event is received
           * 
           */
          void registerEvent( eInternalEventType type, IInternalEventHandler* handler );  
@@ -79,7 +81,7 @@ namespace CecilStLabs
          int m_fd[2];
          
         /**
-          * place to store max fd value for use in select
+          * place to store max file descriptor value for use in select
           */
          int m_maxfd;
                

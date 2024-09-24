@@ -71,7 +71,6 @@ using namespace tinyxml2;
 #include "../Commands/ResetCommand.h"
 #include "../Commands/GetConfigValuesCommand.h"
 #include "../Commands/SetConfigValuesCommand.h"
-#include "../Commands/Commands.h"
 #include "../Commands/CommandList.h"
 
 #include "../Messages.h"
@@ -83,15 +82,15 @@ using namespace tinyxml2;
 #include "../../comms/CommStateMachine/CommsUnavailableState.h"
 #include "../../comms/CommQueue.h"
 
-namespace Terso
+namespace CecilStLabs
 {
    CommandCompletionEvent::CommandCompletionEvent(std::string deviceAccessKey,
                                                   std::string deviceSerialNumber,
                                                   IClockDriver* clockDriver)
-      : jetstreamEvent(deviceAccessKey,
-                       deviceSerialNumber,
-                       clockDriver,
-                       eCommandCompletion_Msg),
+      : Event(deviceAccessKey,
+              deviceSerialNumber,
+              clockDriver,
+              eCommandCompletion_Msg),
               m_parameterList(),
               m_parameterPool(m_parameters, MAX_PARAMETER_ITEMS)
 
@@ -161,9 +160,9 @@ namespace Terso
       ostringstream xml;
 
       xml << "<?xml version=\"1.0\"?>";
-      xml << "<Jetstream xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ";
+      xml << "<Application xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ";
       xml << "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ";
-      xml << "xmlns=\"http://Jetstream.TersoSolutions.com/v1.0/Device/CommandCompletionEvent\">";
+      xml << "xmlns=\"http://Application.CecilStLabs.com/v1.0/Device/CommandCompletionEvent\">";
       xml << "<Header EventTime=\"" << currentTime.toUTCString() << "\" />";
       xml << " <CommandCompletionEvent CommandId=\"";
       xml << m_commandID.ToString();
@@ -193,7 +192,7 @@ namespace Terso
       xml << "<DeviceExtensionList />";
       xml << "</CommandCompletionEvent>";
 
-      xml << "</Jetstream>";
+      xml << "</Application>";
 
       return xml.str();
    }

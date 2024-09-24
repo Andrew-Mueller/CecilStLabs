@@ -8,17 +8,17 @@ namespace CecilStLabs
     * to the system's syslog
     *
     * TODO: currently only contains a single LogEntry per LogEntryEvent, but the
-    *       v1.2 Jetstream documentation implies that a single LogEntryEvent
+    *       documentation implies that a single LogEntryEvent
     *       can contain MANY LogEntries.
     *       This needs to be refactored to take a "list of LogEntries" in the future
     *       and add them to the LogEntryEvent XML appropriately.
     */
-   class LogEntryEvent : public jetstreamEvent
+   class LogEntryEvent : public Event
    {
       public:
 
          /**
-          * Create the Jetstream LogEntryEvent to post containing the necessary jetstream info
+          * Create the LogEntryEvent to post containing the necessary info
           * as well as the specified LogEntry data.
           */
          LogEntryEvent(std::string deviceAccessKey,
@@ -36,20 +36,19 @@ namespace CecilStLabs
           * Setter for the internal log entry object.
           *
           * @param logEntry The new LogEntry object to use for posting the
-          * LogEntryEvent to Jetstream.
+          * LogEntryEvent to the server.
           */
          void SetLogEntry(LogEntry& logEntry);
 
       protected:
 
          /**
-          * The log entry event that we are intending on posting to jetstream.
+          * The log entry event that we are intending on posting to the server.
           */
          LogEntry& m_logEntry;
 
          /**
-          * Implementation of the jetstreamEvent::BuildXML.  See jetstreamEvent
-          * for documentation.
+          * Implementation of the Event::BuildXML.  See Event for documentation.
           */
          std::string buildXML();
    };

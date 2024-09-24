@@ -12,11 +12,10 @@ namespace CecilStLabs
       public:
 
          /**
+          * Process the specified event.
           * 
-          * 
-          * @param event 
+          * @param event Event to process
           * @return true 
-          * @return false 
           */
          virtual bool processEvent( IEVENT_DATA& event ) = 0;
          

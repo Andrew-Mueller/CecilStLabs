@@ -143,7 +143,4 @@ namespace CecilStLabs
       int result = inet_pton(AF_INET, ipAddress.c_str(), &(sa.sin_addr));
       return result != 0;
    }
-
 }
-
-

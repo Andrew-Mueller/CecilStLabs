@@ -27,7 +27,6 @@ using namespace std;
 
 namespace CecilStLabs
 {
-
    SecureSocket::SecureSocket()
       : SocketBase(),
         m_secureSession()

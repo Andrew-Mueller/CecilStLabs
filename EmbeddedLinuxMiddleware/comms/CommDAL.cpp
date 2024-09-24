@@ -420,19 +420,19 @@ namespace CecilStLabs
          commDAL->SelectCallback(numColumns, columnTexts, columnNames);
       }
 
-		#ifdef DAL_DEBUG_PRINT
-		{
-			  stringstream columnStr;
+      #ifdef DAL_DEBUG_PRINT
+      {
+         stringstream columnStr;
 
-			  // example to simply print the resulting records selected.
-			  for(int i = 0; i < numColumns; i++)
-			  {
-				 columnStr << columnNames[i] << " = " << columnTexts[i] << endl;
-			  }
+         // example to simply print the resulting records selected.
+         for(int i = 0; i < numColumns; i++)
+         {
+            columnStr << columnNames[i] << " = " << columnTexts[i] << endl;
+         }
 
-			  getLogDriver()->log(columnStr.str(), LoggingDebug);
-		}
-		#endif
+         getLogDriver()->log(columnStr.str(), LoggingDebug);
+      }
+      #endif
 
       // TODO: i'm not sure what the SQLite expectation for return value is here.
       return 0;

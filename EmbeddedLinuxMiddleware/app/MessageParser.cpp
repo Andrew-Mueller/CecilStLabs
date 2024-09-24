@@ -35,6 +35,8 @@ namespace CecilStLabs
     {
         switch(id)
         {
+            // TODO: populate with specific message IDs as cases for parsing.
+
             default :
             {
                 getLogDriver()->Log("Message Not Expected", LoggingError, "");

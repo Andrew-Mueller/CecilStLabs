@@ -61,7 +61,8 @@ namespace CecilStLabs
 
          /**
           * Setter for the communication queue to enqueue the completion event.
-          * @param commQueue
+          *
+          * @param commQueue The communication queue to use for this event.
           */
          inline void setCommunicationQueue(CommQueue* commQueue) { Event::setCommunicationQueue(commQueue); };
 
@@ -102,7 +103,7 @@ namespace CecilStLabs
 
          /**
           * Build the XML that represents the event in the object that is a child
-          * of this jetstreamEvent object.
+          * of this Event object.
           */
          std::string buildXML();
    };

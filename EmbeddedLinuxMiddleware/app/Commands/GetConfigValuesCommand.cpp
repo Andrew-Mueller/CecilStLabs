@@ -1,11 +1,11 @@
 using namespace std;
 
 
-#include "../../common/tersoTypes.h"               //lint !e761
+#include "../../common/basicTypes.h"               //lint !e761
 #include "../../common/util/EnumByName.h"
 #include "../../common/DateTime/DateTime.h"
 #include "../../common/DateTime/IClockDriver.h"
-#include "../../common/util/TersoUtil.h"
+#include "../../common/util/BasicUtil.h"
 #include "../../common/guid.h"
 
 #include "../../common/LinkedList/SingleLink.h"
@@ -26,14 +26,14 @@ using namespace tinyxml2;
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 
-#include "../jetstreamMessages.h"
-#include "../Events/jetstreamEvent.h"
+#include "../Messages.h"
+#include "../Events/Event.h"
 #include "../Events/CommandCompletionEvent.h"
 
 #include "Command.h"
 #include "GetConfigValuesCommand.h"
 
-namespace Terso
+namespace CecilStLabs
 {
 
    GetConfigValuesCommand::GetConfigValuesCommand(IConfig& config,
@@ -100,6 +100,7 @@ namespace Terso
       // clear out any previous data.
       m_cmdCompletionEvent.clear();
       m_cmdCompletionEvent.setCommandID(m_commandID);
+      
       // take first one off end of list,
       // they are added at head so this acts like a FIFO
       NameValuePair* configValue = (NameValuePair*)m_argumentList.removeFromEnd();

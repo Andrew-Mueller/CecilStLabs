@@ -1,5 +1,5 @@
-#ifndef EXAMPLECONFIGSECTION_H_
-#define EXAMPLECONFIGSECTION_H_
+#ifndef EXAMPLECONFIGSECTION_H
+#define EXAMPLECONFIGSECTION_H
 
 namespace CecilStLabs
 {
@@ -29,7 +29,7 @@ namespace CecilStLabs
           *
           * @param configStr string containing the xml section to read.  Expected to start with
           *        <ExampleConfig> root element.
-          * @return True if all of the data was successfully read, false if an error occured.
+          * @return True if all of the data was successfully read, false if an error occurred.
           */
          bool readSection(std::string configStr);
 
@@ -76,7 +76,7 @@ namespace CecilStLabs
           * @param configFilePath The path to the config file to save settings to.
           *
           * @return True if the config file was written successfully,
-          *         False if an error occured while writing the configuration file.
+          *         False if an error occurred while writing the configuration file.
           */
          bool writeConfigFile(const std::string configFilePath);
 

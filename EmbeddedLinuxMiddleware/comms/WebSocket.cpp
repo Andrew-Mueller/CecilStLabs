@@ -223,7 +223,7 @@ namespace CecilStLabs
    bool WebSocket::SendHeader(std::string deviceAccessKey)
    {
       // NOTE: the spec suggests \r\n to separate the lines of the request.
-      //       The speedway responds to \r\n in a sprintf with a core dump.
+      //       Some platforms responds to \r\n in a sprintf with a core dump.
       //       I can't find any documentation of why this might occur.
       ostringstream headerStr;
       headerStr << "GET " << m_app_path << "?AccessKey=" << deviceAccessKey << " HTTP/1.1" << endl;
@@ -357,7 +357,6 @@ namespace CecilStLabs
                str << " WebSocket::WebsocketWorker - after Socket::SockRead - " << bytes_read << " bytes read" << endl;
                getLogDriver()->Log(str.str(), LoggingDebug);
 
-               //int savedError = errno;
                totalBytesRead = bytes_read;
 
                if (0 == totalBytesRead)

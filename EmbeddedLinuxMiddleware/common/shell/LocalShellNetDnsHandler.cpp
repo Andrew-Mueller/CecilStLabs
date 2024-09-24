@@ -7,9 +7,9 @@
 #include <vector>
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+
+#include <cstring>
 #include <errno.h>
 #include <unistd.h>
 #include <arpa/inet.h>

@@ -86,7 +86,7 @@ namespace CecilStLabs
    void CommRecord::calculateCRC()
    {
       // calculate the CRC 16 of the message and timestamp by appending the
-      // various parts pf
+      // various parts pf the record.
       CRC16 crc(0);
 
       uint32_t tempEnum = m_method;

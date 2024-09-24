@@ -412,7 +412,7 @@ namespace CecilStLabs
                // use the connection or wait for any more data.
                m_isConnected = false;
 
-               // danger
+               // TODO: danger
                //Close();
             }
             else if ((size_t)(-1) == bytes_read)
@@ -433,8 +433,6 @@ namespace CecilStLabs
                #ifdef DEBUG_PRINT
                   pthread_mutex_lock(&m_printSem);
                   cout << "successful read! " << bytes_read << endl;
-                  // this is an address
-                  //cout << "byte read: " << (int)rxData << endl;
 
                   for (unsigned int i = 0; i < bytes_read; i++)
                   {

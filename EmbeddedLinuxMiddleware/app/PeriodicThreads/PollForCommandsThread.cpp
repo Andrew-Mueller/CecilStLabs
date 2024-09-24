@@ -90,7 +90,7 @@ namespace CecilStLabs
    {
       // build up the Poll for Commands URL
       std::ostringstream urlBuilder;
-      urlBuilder << "https://" << m_commQueue.getJetstreamURL()
+      urlBuilder << "https://" << m_commQueue.getEndpointURL()
                  << "/v1.0/device/GetCommands?AccessKey="
                  << m_deviceAccessKey;
 

@@ -77,7 +77,7 @@ using namespace tinyxml2;
 
 #include "SensorReadingThread.h"
 
-namespace Terso
+namespace CecilStLabs
 {
 
    SensorReadingThread::SensorReadingThread(std::string deviceAccessKey,
@@ -99,7 +99,7 @@ namespace Terso
       ostringstream urlBuilder;
 
       urlBuilder << "https://"
-                 << m_commQueue->getJetstreamURL()
+                 << m_commQueue->getEndpointURL()
                  << "/v1.0/device/?AccessKey="
                  << deviceAccessKey;
 

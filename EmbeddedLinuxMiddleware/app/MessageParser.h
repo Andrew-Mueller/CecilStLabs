@@ -19,9 +19,6 @@ namespace CecilStLabs
             virtual ~MessageParser();
 
             void parse(uint32_t id, std::string message);
-
-        protected:
-
     };
 }
 

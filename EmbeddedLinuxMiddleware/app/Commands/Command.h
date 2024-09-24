@@ -77,8 +77,9 @@ namespace CecilStLabs
          /**
           * Protected constructor to allow child classes to properly initialize
           * it.
-          * @param deviceAccessKey The Jetstream Access Key.
-          * @param deviceSerialNumber The Jetstream Serial Number.
+          *
+          * @param deviceAccessKey The Device Access Key.
+          * @param deviceSerialNumber The Device Serial Number.
           * @param clockDriver The driver for accessing the clock for the system.
           * @param commQueue Communication queue to allow the command to
           *                  re-enqueue responses.
@@ -103,7 +104,7 @@ namespace CecilStLabs
          Command& operator=(const Command& rhs __attribute__((unused))) { return *this; };
 
          /**
-          * The id of the command queued by Jetstream and executed by the device.
+          * The id of the command queued by the app and executed by the device.
           * This is required to send back with the command completion event after
           * the command has been executed.
           */

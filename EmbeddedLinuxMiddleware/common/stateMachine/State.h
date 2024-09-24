@@ -75,12 +75,6 @@ namespace CecilStLabs
           * transitions.
           */
          ITransitionHandler* m_transitionHandler;
-
-        /**
-          * flag to indicate it really is in this state
-          */
-         bool m_inState;
-
    };
 
 }

@@ -1,5 +1,5 @@
-#ifndef NETUTIL_H_
-#define NETUTIL_H_
+#ifndef NETUTIL_H
+#define NETUTIL_H
 
 namespace CecilStLabs
 {
@@ -23,7 +23,7 @@ namespace CecilStLabs
          virtual ~NetUtil();
 
          /**
-          * Look up the IP address of the specified hostname.  Retuns the host's
+          * Look up the IP address of the specified hostname.  Returns the host's
           * IP address as a string (containing dots and all as expected).
           *
           * @param hostname The host to lookup the IP address for.

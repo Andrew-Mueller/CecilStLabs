@@ -41,6 +41,7 @@ namespace CecilStLabs
           */
          inline bool getRanToday() { return m_ranToday; };
          inline void setRanToday() { m_ranToday = true; };
+         inline void resetRanToday() { m_ranToday = false; };
 
          /**
           * Task containing the work to be performed at the specified hour.
@@ -63,8 +64,8 @@ namespace CecilStLabs
    };
 
    /**
-    * List of in-frequent tasks to execute.  These are things that occur about
-    * once a day.
+    * List of in-frequent tasks to execute.  These are things that occur once a
+    * day at a specified hour of the day.
     */
    class ScheduledThread
    {
@@ -129,10 +130,10 @@ namespace CecilStLabs
     * Non-member function used for starting up the thread.
     * The pThread creation method requires a non-class member to startup.  This
     * non-member function is passed an instance of the PeriodicThread object
-    * The passed object's member function ::PeriodicAsyncWorker() method is called
+    * The passed object's member function ::ScheduledAsyncWorker() method is called
     * to perform the work.
     *
-    * @param ScheduledThread object to call the internal Scheduled worker
+    * @param arg ScheduledThread object to call the internal Scheduled worker
     */
    void* ScheduledWorkerThread(void* arg);
 

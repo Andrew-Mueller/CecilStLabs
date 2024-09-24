@@ -1,14 +1,10 @@
 #ifndef RESETCOMMAND_H
 #define RESETCOMMAND_H
 
-namespace Terso
+namespace CecilStLabs
 {
    /**
-    * Jetstream command to reset the device.
-    *
-    * TODO: does the reset command require a command completion event?
-    *       documentation says yes:
-    *       https://jetstreamrfid.com/Documentation/CommandCompletionEvent
+    * Command to reset the device.
     */
    class ResetCommand : public Command
    {
@@ -28,8 +24,8 @@ namespace Terso
           * Reset the system
           *
           * @return All commands need to return a command completion event, but
-          *         reset... since it resets does not return a command completion
-          *         event.
+          *         reset... since it resets... does not return a command
+          *         completion event.
           */
          CommandCompletionEvent* action();
 

@@ -7,8 +7,6 @@ namespace CecilStLabs
    /**
     * Interface for the Hardware clock driver used to set the system time and,
     * if needed, also set the real-time clock.
-    *
-    * TODO: Move this IClockDriver from the DateTime folder to the hardware folder.
     */
    class IClockDriver
    {

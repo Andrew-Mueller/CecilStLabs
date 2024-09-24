@@ -1,10 +1,10 @@
-#ifndef GETCONFIGVALUESCOMMAND_H_
-#define GETCONFIGVALUESCOMMAND_H_
+#ifndef GETCONFIGVALUESCOMMAND_H
+#define GETCONFIGVALUESCOMMAND_H
 
-namespace Terso
+namespace CecilStLabs
 {
    /**
-    * Jetstream command for getting the configuration values currently set in
+    * Application command for getting the configuration values currently set in
     * the system.
     */
    class GetConfigValuesCommand : public Command, public ILoggable
@@ -13,7 +13,7 @@ namespace Terso
          /**
           * Create the get configuration values command.
           *
-          * @param config the Coniguration interface used to retrieve values.
+          * @param config the Configuration interface used to retrieve values.
           */
          GetConfigValuesCommand(IConfig& config,
                                 IClockDriver* clockDriver,
@@ -35,7 +35,7 @@ namespace Terso
          /**
           * Add the specified configuration parameter with the name and value.
           *
-          * @param name Name the configuration parameter to add.
+          * @param name Name of the configuration parameter to add.
           * @param value Parameter value to add.
           */
          void addArgument(std::string name, std::string value);
@@ -78,7 +78,6 @@ namespace Terso
           * The configuration member interface to get config values from.
           */
          IConfig& m_configuration;
-
 
    };
 

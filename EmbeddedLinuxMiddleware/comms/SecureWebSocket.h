@@ -37,12 +37,6 @@ namespace CecilStLabs
           */
          void Close();
 
-
-         /*bool Send(std::string message);
-
-         RXData* Read(const uint8_t timeoutSeconds);
-         */
-
       protected:
 
          /**

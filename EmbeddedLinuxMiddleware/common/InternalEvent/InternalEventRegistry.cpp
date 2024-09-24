@@ -96,23 +96,29 @@ namespace CecilStLabs
 
    bool InternalEventRegistry::sendEvent( IInternalEvent& event )
    {
-      bool bret = true;
-      int writeRet;
+      bool success = false;
 
       if (MUTEX_SUCCESS == pthread_mutex_lock(&m_pipeSem))
       {
          // for size add in the size of the actual int holding size of data plus the size of the type
-         writeRet = write(m_fd[1], event.getData(), event.getDataSize() + sizeof(int) + sizeof(eInternalEventType) );
-         if( -1 ==  writeRet )
+         uint32_t eventSize = (event.getDataSize() + sizeof(int) + sizeof(eInternalEventType));
+
+         if( -1 ==  write(m_fd[1], event.getData(), eventSize))
          {
             getLogDriver()->Log("InternalEvent - Event write error!!", LoggingDebug );
 
-            bret = false;
+            success = false;
          }
+         else
+         {
+            success = true;
+         }
+
          pthread_mutex_unlock(&m_pipeSem);
 
       }
-      return bret;
+
+      return success;
    }
 
    void InternalEventRegistry::registerEvent( eInternalEventType type, IInternalEventHandler* handler )
@@ -123,7 +129,6 @@ namespace CecilStLabs
 
    void InternalEventRegistry::waitOnEvents()
    {
-      int retVal;
       bool bret = false;
       IEVENT_DATA readEvent;
 
@@ -138,17 +143,17 @@ namespace CecilStLabs
       tv.tv_sec = 1;
       tv.tv_usec = 0;
 
-      retVal = select( m_maxfd, &rfds, NULL, NULL, &tv );
+      int retVal = select( m_maxfd, &rfds, NULL, NULL, &tv);
       if( -1 == retVal )
       {
-         getLogDriver()->Log("InternalEvent - select error!!", LoggingDebug );
+         getLogDriver()->Log("InternalEvent - select error!!", LoggingDebug);
       }
       else if( retVal >= 0 )
       {
          // at least one event available
-         memset( &readEvent, 0, sizeof(IEVENT_DATA) );
+         memset(&readEvent, 0, sizeof(IEVENT_DATA));
          bret = readFromPipe( readEvent );
-         if( true == bret )
+         if(true == bret)
          {
             InternalEventRegistryEntry* entry = (InternalEventRegistryEntry*)m_RegisteredEvents.first();
             while( entry )
@@ -165,13 +170,11 @@ namespace CecilStLabs
 
    bool InternalEventRegistry::readFromPipe( IEVENT_DATA& event )
    {
-      int readRet;
-      bool bret = false;
+      bool success = false;
 
       if (MUTEX_SUCCESS == pthread_mutex_lock(&m_pipeSem))
       {
-
-         readRet = read( m_fd[0], &event.type, sizeof(eInternalEventType) );
+         int readRet = read( m_fd[0], &event.type, sizeof(eInternalEventType) );
          if( readRet == sizeof(eInternalEventType) )
          {
 
@@ -185,10 +188,10 @@ namespace CecilStLabs
                if( event.size <= (int)(MAX_EVENT_DATA) )
                {
                   // read into buffer
-                  readRet = read( m_fd[0], &event.data, event.size );
+                  readRet = read(m_fd[0], &event.data, event.size);
                   if( readRet == event.size )
                   {
-                     bret = true;
+                     success = true;
                   }
                }
                else
@@ -204,7 +207,7 @@ namespace CecilStLabs
 
       }
 
-      return bret;
+      return success;
    }
 
    void* EventThread(void* arg)
@@ -218,7 +221,4 @@ namespace CecilStLabs
 
       return NULL;
    }
-
 }
-
-

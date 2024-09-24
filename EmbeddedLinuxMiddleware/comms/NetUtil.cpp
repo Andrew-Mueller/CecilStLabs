@@ -21,7 +21,6 @@ namespace CecilStLabs
    NetUtil::NetUtil()
    {
       // intentionally left blank.
-
    }
 
    NetUtil::~NetUtil()

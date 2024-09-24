@@ -1,5 +1,5 @@
-#ifndef ISTATE_H_
-#define ISTATE_H_
+#ifndef ISTATE_H
+#define ISTATE_H
 
 namespace CecilStLabs
 {
@@ -32,7 +32,7 @@ namespace CecilStLabs
          /**
           * Adds the specified transition to the state.
           *
-          * @param transition Defines the between this state and the next.
+          * @param transition Defines the transition between this state and the next state.
           */
          virtual void addTransition(Transition* transition) = 0;
 

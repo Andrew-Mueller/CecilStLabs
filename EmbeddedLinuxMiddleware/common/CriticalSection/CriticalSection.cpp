@@ -6,6 +6,8 @@ using namespace std;
 
 #include "CriticalSection.h"
 
+#warning Critical Sections are unimplemented.  Nothing is threadsafe yet...
+
 namespace CecilStLabs
 {
    CriticalSection::CriticalSection()
@@ -14,7 +16,7 @@ namespace CecilStLabs
       pthread_mutexattr_t m_critSection_mutexattr;
 
       // set the mutex as a recursive mutex
-      // TODO: Àwhat does a recursive mutex mean?
+      // TODO: ï¿½what does a recursive mutex mean?
       pthread_mutexattr_settype(&m_critSection_mutexattr, PTHREAD_MUTEX_RECURSIVE);
 
       // create the mutex with the attributes set

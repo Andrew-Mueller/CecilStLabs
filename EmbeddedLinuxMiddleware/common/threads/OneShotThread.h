@@ -71,11 +71,11 @@ namespace CecilStLabs
     * Non-member function used for starting up the thread.
     * The pThread creation method requires a non-class member to startup.
     * This non-member function is passed an instance of the OneShotThread object
-    * The passed object's member function ::OneShotWorkerThread() method is called
+    * The passed object's member function ::OneShotWorker() method is called
     * to perform the work.
     *
-    * @param OneShotThread object to call the internal OneShotWorkerThread
-    *                       worker method.
+    * @param arg OneShotThread object to call the internal OneShotWorkerThread
+    *            worker method.
     */
    void* OneShotWorkerThread(void* arg);
 }

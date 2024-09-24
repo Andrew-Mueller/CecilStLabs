@@ -1,5 +1,5 @@
-#ifndef WEBSOCKETFRAME_H_
-#define WEBSOCKETFRAME_H_
+#ifndef WEBSOCKETFRAME_H
+#define WEBSOCKETFRAME_H
 
 namespace CecilStLabs
 {
@@ -133,7 +133,7 @@ namespace CecilStLabs
 
          /**
           * WebSocket Spec indicates that 126 in the payload length field indicates the next 2 bytes
-          * should be interpretted as the payload length (uint16).
+          * should be interpreted as the payload length (uint16).
           */
          static const uint8_t EXT_PAYLOAD_BOUNDARY          = 126;
 

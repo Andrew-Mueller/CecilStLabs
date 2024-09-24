@@ -211,6 +211,7 @@ namespace CecilStLabs
       {
          if (NULL != m_instance->m_logDriver)
          {
+            // TODO: shouldn't we specify the logging level instead of forcing debug here?
             m_instance->m_logDriver->Log(message, LoggingDebug, "");
          }
       }
@@ -255,9 +256,9 @@ namespace CecilStLabs
       signal(SIGFPE,  genericSignalHandler);
       signal(SIGILL,  genericSignalHandler);
 
-	  // NOTE: We are currently not catching the interrupt signal so we can use
+      // NOTE: We are currently not catching the interrupt signal so we can use
       //       ctrl+c to stop the application.
-      //signal(SIGINT,  genericSignalHandler);
+      //TODO: signal(SIGINT,  genericSignalHandler);
 
       signal(SIGSEGV, genericSignalHandler);
       signal(SIGTERM, genericSignalHandler);

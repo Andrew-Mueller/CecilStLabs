@@ -2,7 +2,7 @@
 #ifndef SENSORREADINGTHREAD_H_
 #define SENSORREADINGTHREAD_H_
 
-namespace Terso
+namespace CecilStLabs
 {
 
    class SensorReadingThread : public PeriodicThread, public ILoggable
@@ -11,7 +11,7 @@ namespace Terso
 
          /**
           * Create the Sensor Reading Thread with the specified device access data
-          * and number of seconds to define the heartbeat's period.
+          * and number of seconds to define the sensor reading's period.
           *
           * @param deviceAccessKey The guid that provides access to post
           *        messages for the device.
@@ -20,7 +20,7 @@ namespace Terso
           *        device for example: NMB000100001
           *
           * @param commQueue The communication queue for sending messages to the
-          *        Jetstream server.
+          *        server.
           *
           * @param clockDriver The clock for grabbing the time of the sensor reading event.
           *
@@ -39,14 +39,15 @@ namespace Terso
          virtual ~SensorReadingThread();
 
          /**
-          * Add a sensor to read periodically and publish to jetstream in the
+          * Add a sensor to read periodically and publish to the server in the
           * SensorReadingEvent.
           *
-          * @param sensor Sensor to read periodically and publish to Jetstream.
+          * @param sensor Sensor to read periodically and publish to the server.
           */
          void addSensor(ISensor* sensor);
 
 
+         // TODO: this feels like it brakes the abstraction of a generic sensor.
          inline void setTemperatureAlarm() { m_inTemperatureAlarm = true; };
          inline void clearTemperatureAlarm() { m_inTemperatureAlarm = false; };
 
@@ -79,17 +80,17 @@ namespace Terso
          bool m_inTemperatureAlarm;
 
          /**
-          * The Jetstream access key for the device
+          * The access key for the device
           */
          string m_deviceAccessKey;
 
          /**
-          * The Serial number of the device to send the heartbeat.
+          * The Serial number of the device to send the sensor reading.
           */
          string m_deviceSerialNumber;
 
          /**
-          * Communication queue used for sending message to the Jetstream Server
+          * Communication queue used for sending message to the server
           * and persisting data if communication network is down.
           */
          CommQueue* m_commQueue;
@@ -101,7 +102,7 @@ namespace Terso
          IClockDriver* m_clockDriver;
 
          /**
-          * Specific Jetstream Device URL to send the Sensor Reading Event.
+          * Specific device URL to send the Sensor Reading Event.
           */
          std::string m_sensorReadingURL;
 
@@ -111,7 +112,7 @@ namespace Terso
          std::string m_sensorReadingBody;
 
          /**
-          * jetstream event used for reading sensors and generating the event XML.
+          * Event used for reading sensors and generating the event XML.
           */
          SensorReadingEvent m_sensorReadingEvent;
    };

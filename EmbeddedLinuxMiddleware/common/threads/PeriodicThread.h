@@ -9,8 +9,8 @@ namespace CecilStLabs
     */
    enum ePeriodInterval
    {
-      ePeriodInterval_Minutes        = 060,  //
-      ePeriodInterval_Seconds        = 001,  // 1
+      ePeriodInterval_Minutes        =  60,  // 60 seconds in a minute
+      ePeriodInterval_Seconds        =   1,  // 1 second
       ePeriodInterval_Milliseconds   = 103   // 10 e -3 = 0.001
    };
 
@@ -48,7 +48,7 @@ namespace CecilStLabs
           * periodic thread doing its work (calling its PeriodicAsyncWorker
           * method.
           *
-          * @return Minutes between performing the periodic thread's work.
+          * @return The number of minutes between performing the periodic thread's work.
           */
          uint16_t GetPeriod();
 
@@ -69,6 +69,8 @@ namespace CecilStLabs
           *
           * @param period The new number of seconds the thread will wait between
           *               doing its work via its PeriodicAsyncWofrker function.
+          * @param periodInterval Enumeration representing the units of the thread
+          *                       workers period (minutes, seconds, nanoseconds, etc.)
           */
          virtual void SetPeriod(const uint16_t period, const ePeriodInterval periodInterval);
 
@@ -124,17 +126,19 @@ namespace CecilStLabs
          uint16_t m_period;
 
          /**
-          * how often to run the periodic thread should run.
+          * The units of the period member variable, how often to run the periodic
+          * thread should run. (minutes, seconds, etc.)
           */
          ePeriodInterval m_periodInterval;
 
          /**
           * flag to inform a caller that the thread is actively running or stopped.
+          * True if the thread is running, false if the thread is stopped.
           */
          bool m_running;
 
          /**
-          * The thread for periodically sending the heart beat.
+          * The posix thread handle.
           */
          pthread_t m_periodicThread;
 

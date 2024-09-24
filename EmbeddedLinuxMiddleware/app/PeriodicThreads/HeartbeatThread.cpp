@@ -15,10 +15,10 @@ using namespace std;
 
 #include <pthread.h>                            //lint !e537
 
-#include "../../common/tersoTypes.h"
+#include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
 #include "../../common/DateTime/DateTime.h"
-#include "../../common/util/TersoUtil.h"
+#include "../../common/util/BasicUtil.h"
 #include "../../common/guid.h"
 
 #include "../../common/logging/LogEntry.h"
@@ -76,7 +76,7 @@ using namespace tinyxml2;
 // NOTE: this define should go away in favor of using the Debug Print Mask
 #define HEARTBEATTHREAD_DEBUG_PRINT
 
-namespace Terso
+namespace CecilStLabs
 {
    HeartbeatThread::HeartbeatThread(std::string deviceAccessKey,
                                     std::string deviceSerialNumber,

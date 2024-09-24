@@ -1,5 +1,5 @@
-#ifndef XMLFILETABLE_H_
-#define XMLFILETABLE_H_
+#ifndef XMLFILETABLE_H
+#define XMLFILETABLE_H
 
 namespace CecilStLabs
 {
@@ -31,10 +31,12 @@ namespace CecilStLabs
           */
          void writeFile();
 
-         uint8_t getVersion()
-         {
-            return m_version;
-         }
+         /**
+          * get the version of the XML File
+          *
+          * @return The version number of the file 0-255
+          */
+         inline uint8_t getVersion() { return m_version; }
 
       protected:
 
@@ -62,17 +64,17 @@ namespace CecilStLabs
          virtual bool readParameters(XMLElement* elem) = 0;
 
           /**
-          * Writes the list of paraeters and returns the XML string
+          * Writes the list of parameters and returns the XML string
           * representation from the config.
           *
           * @param The parent node that this list is being added to.
           *
-          * @return true if success
+          * @return true if successfully written.
           */
          virtual bool writeParameters(XMLNode &xmlParentNode);
 
          /**
-          * File name passed into object
+          * File name of the xml file
           */
          string m_fileName;
 

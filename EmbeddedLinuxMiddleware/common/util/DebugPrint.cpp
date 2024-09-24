@@ -57,7 +57,7 @@ namespace CecilStLabs
       if ((MAX_VALID_CAT >= verifyCat) &&
           (0 >= verifyCat))
       {
-         // TODO: throw exception?
+         // TODO: throw exception?  log error?
       }
       else
       {

@@ -49,12 +49,12 @@ namespace CecilStLabs
          Event(std::string deviceAccessKey,
                std::string deviceSerialNumber,
                IClockDriver* clockDriver,
-               eMessage jsMessageID);
+               eMessage messageID);
 
          /**
-          * release resources used by the jetstream event.
+          * release resources used by the  event.
           */
-         virtual ~jetstreamEvent();
+         virtual ~Event();
 
          /**
           * Setter for the communication queue object for enqueing event communications.
@@ -64,7 +64,7 @@ namespace CecilStLabs
          void setCommunicationQueue(CommQueue* commQueue);
 
          /**
-          * The logical device id  assigned to this device.
+          * The logical device id assigned to this device.
           */
          std::string m_logicalDeviceID;
 
@@ -84,23 +84,23 @@ namespace CecilStLabs
          CommQueue* m_commQueue;
 
          /**
-          * URL to the Jetstream end point for posting the event.
+          * URL to the application end point for posting the event.
           */
          std::string m_eventUrl;
 
          /**
-          * Identifier of the Jetstream message.
+          * Identifier of the  message.
           */
-         eJetstreamMessage m_jsMessage;
+         eMessage m_message;
 
          /**
-          * the Jetstream Device Access Key
+          * The Device Access Key
           */
          std::string m_deviceAccessKey;
 
          /**
           * Build the XML that represents the event in the object that is a child
-          * of this jetstreamEvent object.
+          * of this event object.
           */
          virtual std::string buildXML() = 0;
    };

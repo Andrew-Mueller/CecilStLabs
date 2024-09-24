@@ -1,5 +1,5 @@
-#ifndef WEBSOCKET_H_
-#define WEBSOCKET_H_
+#ifndef WEBSOCKET_H
+#define WEBSOCKET_H
 
 namespace CecilStLabs
 {
@@ -64,7 +64,7 @@ namespace CecilStLabs
              * Return the data from the ringbuffer owned by the web socket
              *
              * @param timeoutSeconds the number of seconds to wait for data
-             *        before timeing out.
+             *        before timing out.
              *
              * @return RXData the data read from the socket.  Null if no data was read.
              */
@@ -150,7 +150,7 @@ namespace CecilStLabs
              * upgrade to a websocket connection.
              *
              * @return True if the response matches the request header.
-             *         False if data didn't match or an error occured.
+             *         False if data didn't match or an error occurred.
              */
             bool CheckHeaderResponse();
 

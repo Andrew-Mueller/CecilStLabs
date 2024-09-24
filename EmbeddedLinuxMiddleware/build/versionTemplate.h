@@ -53,7 +53,7 @@ namespace CecilStLabs
           */
          static const char* svnPath(void)
          {
-			// URL of the repository: https://github.com/Andrew-Mueller/CecilStLabs
+			   // URL of the repository: https://github.com/Andrew-Mueller/CecilStLabs
             const char* SVN_PATH = "__COMPONENT_SVN_PATH__";
             return SVN_PATH;
          }

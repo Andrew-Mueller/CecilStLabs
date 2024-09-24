@@ -1,5 +1,5 @@
-#ifndef BASICUTIL_H_
-#define BASICUTIL_H_
+#ifndef BASICUTIL_H
+#define BASICUTIL_H
 
 namespace CecilStLabs
 {
@@ -63,7 +63,7 @@ namespace CecilStLabs
          /**
           * Checks if the specified file already exists.
           *
-          * @param filePath The path to the file to check foe existance.
+          * @param filePath The path to the file to check foe existence.
           *
           * @return True if the file specified by the file path exists, False if
           *         it does not.

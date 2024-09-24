@@ -1,7 +1,7 @@
 /**
  * LocalShellStates.cpp
  *
- * This is the shell application state fucntionality
+ * This is the shell application state functionality
  *
  * The states are responsible for processing actual commands
  */

@@ -1,13 +1,13 @@
 #include <iostream>
-#include <sstream>
 using namespace std;
 
 #include <pthread.h>
 
+#include <sstream>
 #include <sys/socket.h>
-#include <resolv.h>
 #include <netdb.h>
 #include <openssl/ssl.h>
+#include <resolv.h>
 #include <openssl/err.h>
 
 #include "../common/basicTypes.h"
@@ -103,7 +103,7 @@ namespace CecilStLabs
    {
       // NOTE: The Amazon Windows Server 2012
       // NOTE: the spec suggests \r\n to separate the lines of the request.
-      //       The speedway responds to \r\n in a sprintf with a core dump.
+      //       Some platforms responds to \r\n in a sprintf with a core dump.
       //       I can't find any documentation of why this might occur.
 
       ostringstream headerStr;
@@ -167,7 +167,7 @@ namespace CecilStLabs
          //       the values expected.
 
          // TODO: Sec-WebSocket-Key is a random bytes.  The spec says it then takes
-         //       these bytes, concatinates a hard coded GUID string: 258EAFA5-E914-47DA-95CA-C5AB0DC85B11
+         //       these bytes, concatenates a hard coded GUID string: 258EAFA5-E914-47DA-95CA-C5AB0DC85B11
          //       Then, it creates the Secure Hash Algorithm SHA1 hash from it
          //       and performs Base64 encoding. The resulting string of bytes
          //       needs to be used by both the server and the client, and this

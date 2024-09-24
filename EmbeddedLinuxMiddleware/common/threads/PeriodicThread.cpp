@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <time.h>
 
-//#include <eventfd.h>
-//#include <poll.h>
-
 #include <errno.h>
 
 #include <iostream>
@@ -128,7 +125,8 @@ namespace CecilStLabs
       Start();
    }
 
-   PeriodicThread::PeriodicThread(const uint16_t period, const ePeriodInterval periodInterval)
+   PeriodicThread::PeriodicThread(const uint16_t period,
+                                  const ePeriodInterval periodInterval)
       : m_period(period),
         m_periodInterval(periodInterval),
         m_running(false),
@@ -140,7 +138,6 @@ namespace CecilStLabs
    PeriodicThread::~PeriodicThread()
    {
       // make sure the thread is stopped and dispose of the pthread
-
       Stop();
 
       pthread_mutex_destroy(&m_periodicSemaphore);
@@ -191,7 +188,7 @@ namespace CecilStLabs
                // unknown interval
                // log the error so it is known
 
-
+               // set the period for one nanosecond from now?
                period.tv_sec = now.tv_sec;
                period.tv_nsec = now.tv_nsec + 1;
             }
@@ -205,8 +202,9 @@ namespace CecilStLabs
                                      &period,
                                      NULL))
             {
-               // sleep was interrupted, or an error occured while attempting to sleep.
+               // sleep was interrupted, or an error occurred while attempting to sleep.
 
+               // TODO: log the error and kill the thread.
             }
          }
       }

@@ -102,7 +102,6 @@ namespace CecilStLabs
           */
          bool isValidIpAddress (const std::string& ipAddress);
 
-
    };
 }
 #endif

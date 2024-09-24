@@ -70,7 +70,7 @@ using namespace tinyxml2;
 #include "../Commands/ResetCommand.h"
 #include "../Commands/GetConfigValuesCommand.h"
 #include "../Commands/SetConfigValuesCommand.h"
-#include "../Commands/JetstreamCommands.h"
+#include "../Commands/AppCommands.h"
 
 #include "../Commands/CommandList.h"
 
@@ -84,60 +84,60 @@ using namespace tinyxml2;
 #include "../../comms/CommQueue.h"
 
 // TODO: this needs to be replaced with debug print message bit-switches.
-#undef JSEVENT_DEBUG_PRINT
+#undef EVENT_DEBUG_PRINT
 
-namespace Terso
+namespace CecilStLabs
 {
-   jetstreamEvent::jetstreamEvent(std::string deviceAccessKey,
-                                  std::string deviceSerialNumber,
-                                  IClockDriver* clockDriver,
-                                  eJetstreamMessage jsMessageID)
+   Event::Event(std::string deviceAccessKey,
+                std::string deviceSerialNumber,
+                IClockDriver* clockDriver,
+                eMessage messageID)
             : m_logicalDeviceID(deviceSerialNumber),
               m_eventTime(),
               m_clockDriver(clockDriver),
               m_commQueue(NULL),
               m_eventUrl(),
-              m_jsMessage(jsMessageID),
+              m_message(messageID),
               m_deviceAccessKey(deviceAccessKey)
    {
       // intentionally left blank.
    }
 
-   jetstreamEvent::jetstreamEvent()
+   Event::Event()
       : m_logicalDeviceID(),
         m_eventTime(),
         m_clockDriver(NULL),
         m_commQueue(NULL),
         m_eventUrl(),
-        m_jsMessage(eNone)
+        m_message(eNone)
    {
       // intentionally left blank
    }
 
-   jetstreamEvent::~jetstreamEvent()
+   Event::~Event()
    {
       // intentionally left blank
    }
 
-   void jetstreamEvent::setCommunicationQueue(CommQueue* commQueue)
+   void Event::setCommunicationQueue(CommQueue* commQueue)
    {
       m_commQueue = commQueue;
 
       ostringstream urlBuilder;
       urlBuilder << "https://"
-                 << m_commQueue->getJetstreamURL()
+                 << m_commQueue->getURL()
                  << "/v1.0/device/?AccessKey="
                  << m_deviceAccessKey;
 
       m_eventUrl = urlBuilder.str();
    }
 
-   void jetstreamEvent::PostToJetstream()
+   void Event::PostToServer()
    {
-      #ifdef JSEVENT_DEBUG_PRINT
+      #ifdef EVENT_DEBUG_PRINT
          // TODO: modify this to utilize Debug Print masks and log to the
          //       ILogger or ILoggable
-         cout << "Queuing the Jetstream Event" << endl;
+         cout << "Queuing the Event" << endl;
       #endif
 
       // get the event xml from the child's specific Event's implementation of
@@ -145,7 +145,7 @@ namespace Terso
       if (NULL != m_commQueue)
       {
          string event_xml = buildXML();
-         CommRecord record(POST, m_eventUrl, event_xml, m_jsMessage, m_clockDriver->getCurrentTime());
+         CommRecord record(POST, m_eventUrl, event_xml, m_message, m_clockDriver->getCurrentTime());
          m_commQueue->enqueue(record);
       }
    }

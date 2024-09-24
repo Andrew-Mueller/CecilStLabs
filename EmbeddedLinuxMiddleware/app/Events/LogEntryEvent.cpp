@@ -11,10 +11,10 @@ using namespace std;
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 
-#include "../../common/tersoTypes.h"
+#include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
 #include "../../common/DateTime/DateTime.h"
-#include "../../common/util/TersoUtil.h"
+#include "../../common/util/BasicUtil.h"
 #include "../../common/guid.h"
 
 #include "../../common/logging/LogEntry.h"
@@ -59,18 +59,18 @@ using namespace tinyxml2;
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 
-#include "../Events/jetstreamEvent.h"
+#include "../Events/Event.h"
 #include "../Events/CommandCompletionEvent.h"
 
 #include "../Commands/Command.h"
 #include "../Commands/ResetCommand.h"
 #include "../Commands/GetConfigValuesCommand.h"
 #include "../Commands/SetConfigValuesCommand.h"
-#include "../Commands/JetstreamCommands.h"
+#include "../Commands/AppCommands.h"
 #include "../Commands/CommandList.h"
 
-#include "../jetstreamMessages.h"
-#include "../jetstreamMessageParser.h"
+#include "../Messages.h"
+#include "../MessageParser.h"
 
 #include "../../comms/CommStateMachine/CommsSignals.h"
 #include "../../comms/CommStateMachine/BidirectionalCommsAvailableState.h"
@@ -79,10 +79,10 @@ using namespace tinyxml2;
 
 #include "../../comms/CommQueue.h"
 
-#include "jetstreamEvent.h"
+#include "Event.h"
 #include "LogEntryEvent.h"
 
-namespace Terso
+namespace CecilStLabs
 {
 
    LogEntryEvent::LogEntryEvent(std::string deviceAccessKey,
@@ -90,10 +90,10 @@ namespace Terso
                                 IClockDriver* clockDriver,
                                 CommQueue* commQueue,
                                 LogEntry& logEntry)
-      : jetstreamEvent(deviceAccessKey,
-                       deviceSerialNumber,
-                       clockDriver,
-                       eLogEntryEvent_Msg),
+      : Event(deviceAccessKey,
+              deviceSerialNumber,
+              clockDriver,
+              eLogEntryEvent_Msg),
         m_logEntry(logEntry)
    {
       setCommunicationQueue(commQueue);
@@ -115,23 +115,23 @@ namespace Terso
       ostringstream xml;
 
       xml << "<?xml version=\"1.0\"?>";
-      xml << "<Jetstream xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ";
+      xml << "<Application xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ";
       xml << "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ";
-      xml << "xmlns=\"http://Jetstream.TersoSolutions.com/v1.0/Device/LogEntryEvent\">";
+      xml << "xmlns=\"http://Application.CecilStLabs.com/v1.0/Device/LogEntryEvent\">";
       xml << "<Header DeviceSerialNumber=\"" << m_logicalDeviceID;
       xml << "\" EventTime=\"" << currentTime.toUTCString() << "\" />";
 
       xml << "<LogEntryEvent>";
       xml <<   "<LogEntryList>";
-      xml <<      "<LogEntry Level=\"" << m_logEntry.getLogLevelName() << "\" ";
-      xml <<                "Message=\"" << m_logEntry.getMessage() << "\" ";
-      xml <<                "Type=\"" << m_logEntry.getType() << "\" ";
-      xml <<                "LogTime=\"" << m_logEntry.getTimeStamp().toUTCString() << "\">";
+      xml <<      "<LogEntry Level=\""    << m_logEntry.getLogLevelName() << "\" ";
+      xml <<                "Message=\""  << m_logEntry.getMessage() << "\" ";
+      xml <<                "Type=\""     << m_logEntry.getType() << "\" ";
+      xml <<                "LogTime=\""  << m_logEntry.getTimeStamp().toUTCString() << "\">";
       xml <<         "<ParameterList />";
       xml <<      "</LogEntry>";
       xml <<   "</LogEntryList>";
       xml << "</LogEntryEvent>";
-      xml << "</Jetstream>";
+      xml << "</Application>";
 
       return xml.str();
    }

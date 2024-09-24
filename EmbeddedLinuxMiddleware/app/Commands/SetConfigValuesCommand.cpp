@@ -1,16 +1,10 @@
-//#include <errno.h>
-//#include <string.h>
-
-//#include <iostream>
-//#include <sstream>
-//#include <string>
 using namespace std;
 
-#include "../../common/tersoTypes.h"
+#include "../../common/basicTypes.h"
 #include "../../common/util/EnumByName.h"
 #include "../../common/DateTime/DateTime.h"
 #include "../../common/DateTime/IClockDriver.h"
-#include "../../common/util/TersoUtil.h"
+#include "../../common/util/BasicUtil.h"
 #include "../../common/guid.h"
 
 #include "../../common/LinkedList/SingleLink.h"
@@ -28,21 +22,21 @@ using namespace tinyxml2;
 #include "../../common/config/IConfig.h"
 #include "../../common/util/NameValuePair.h"
 
-#include "../../common/config/JetstreamAgentConfigSection.h"
+#include "../../common/config/NetworkConfigSection.h"
 
 #include "../../common/InternalEvent/IInternalEvent.h"
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 #include "../../common/InternalEvent/SetConfigInternalEvent.h"
 
-#include "../jetstreamMessages.h"
-#include "../Events/jetstreamEvent.h"
+#include "../Messages.h"
+#include "../Events/Event.h"
 #include "../Events/CommandCompletionEvent.h"
 
 #include "Command.h"
 #include "SetConfigValuesCommand.h"
 
-namespace Terso
+namespace CecilStLabs
 {
 
    SetConfigValuesCommand::SetConfigValuesCommand(IConfig& config,
@@ -61,7 +55,6 @@ namespace Terso
          m_configValues[i].setName(std::string(""));
          m_configValues[i].setValue(std::string(""));
       }
-
    }
 
    SetConfigValuesCommand::~SetConfigValuesCommand()

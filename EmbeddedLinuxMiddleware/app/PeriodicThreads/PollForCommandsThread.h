@@ -8,9 +8,9 @@ namespace CecilStLabs
       public:
          /**
           * Create the Thread to periodically poll for commands with the
-          * specified device access data.
-          * and number of seconds to define the heartbeat's period.
-          * @param deviceAccessKey The guid that provides access ot post
+          * specified device access data and number of seconds to define the heartbeat's period.
+          *
+          * @param deviceAccessKey The guid that provides access to post
           *        messages for the device.
           * @param deviceURL The Device Web Server URL to connect to.
           * @param pollCommand_seconds The number of seconds between polling for

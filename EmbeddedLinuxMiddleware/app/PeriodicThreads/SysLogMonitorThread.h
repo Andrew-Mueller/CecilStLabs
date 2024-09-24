@@ -1,5 +1,5 @@
-#ifndef SYSLOGMONITOR_H_
-#define SYSLOGMONITOR_H_
+#ifndef SYSLOGMONITOR_H
+#define SYSLOGMONITOR_H
 
 namespace CecilStLabs
 {
@@ -14,8 +14,8 @@ namespace CecilStLabs
           * Create the mechanism used to monitor the system log and post messages
           * to the server.
           *
-          * @param logEntryEvent The Jetstream LogEntry event used to post the
-          *                      messages to the server.
+          * @param logEntryEvent The LogEntry event used to post the messages
+          *                      to the server.
           * @param filePath The path to the system log to monitor for changes.
           */
          SysLogMonitorThread(LogEntryEvent& logEntryEvent,

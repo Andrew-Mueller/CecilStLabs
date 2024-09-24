@@ -189,7 +189,7 @@ namespace CecilStLabs
    string HTTPS::BuildGET(string path_str)
    {
       // NOTE: the spec suggests \r\n to separate the lines of the request.
-      //       The speedway responds to \r\n in a sprintf, stream, etc. with a
+      //       The platform version responds to \r\n in a sprintf, stream, etc. with a
       //       core dump.
       //
       //       Oddly enough, putting the \r and \n on separate lines
@@ -197,7 +197,7 @@ namespace CecilStLabs
       //
       //       I can't find any documentation of why this might occur.
       //       This might be specific to the ARM version of gcc used by the
-      //       speedway (monte vista linux).
+      //       platform (monte vista linux).
       //
       //       In the mean time, the fast and easy fix is to simply put the
       //       characters on separate lines.

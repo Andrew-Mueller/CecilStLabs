@@ -1,5 +1,5 @@
-#ifndef LINUXRS232_H_
-#define LINUXRS232_H_
+#ifndef LINUXRS232_H
+#define LINUXRS232_H
 
 namespace CecilStLabs
 {
@@ -34,7 +34,7 @@ namespace CecilStLabs
          uint16_t Send(uint8_t* txBuffer, uint16_t numberOfBytes);
 
          /**
-          * Receive some data into the specified
+          * Receive some data into the specified buffer.
           *
           * @param rxBuffer is the pointer to the received information.
           * @param numberOfBytes the number of data bytes expected to be received.

@@ -33,9 +33,9 @@ namespace CecilStLabs
       timeval time;
       gettimeofday(&time, NULL);
 
-      uint8_t secsToWait = time.tv_sec % 60;
-
       m_currentHour = time.tv_sec / 60;
+
+      uint8_t secsToWait = time.tv_sec % 60;
 
       sleep(secsToWait);
    }

@@ -4,9 +4,8 @@
 #include <string>
 #include <vector>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 #include <errno.h>
 #include <unistd.h>
 
@@ -37,7 +36,9 @@ namespace CecilStLabs
    const std::string XMLFileTable::XMLATTR_VERSION = "version";
    const std::string XMLFileTable::XMLATTR_CRC16 = "CRC16";
 
-   XMLFileTable::XMLFileTable(const string& file, const string& rootSection, const string& elements)
+   XMLFileTable::XMLFileTable(const string& file,
+                              const string& rootSection,
+                              const string& elements)
          : m_fileName(file),
            m_rootSection(rootSection),
            m_elementName(elements),

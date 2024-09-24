@@ -48,7 +48,7 @@ namespace CecilStLabs
          inline eShellHandlers getType() { return m_type; }
          inline std::string getPrompt() { return m_prompt; }
 
-         // TODO: this should not be here.
+         // TODO: this should not be here.  Move to util folder.
           /**
           * Splits a string with the specified delimeter and puts parts in elems
           *

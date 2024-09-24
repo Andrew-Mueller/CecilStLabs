@@ -6,13 +6,13 @@
 #include "../../common/tinyxml/tinyxml2.h"
 using namespace tinyxml2;
 
-namespace Terso
+namespace CecilStLabs
 {
    // forward declare the communication queue item.
    class CommQueue;
 
    /**
-    * Container of commands received from the Jetstream Server.
+    * Container of commands received from the API Server.
     */
    class CommandList
    {
@@ -34,21 +34,20 @@ namespace Terso
          /**
           * Remove the next command from the list and returns it.
           *
-          * @param The command in the list to retrieve.
-          *
-          * @return True if the command was retrieved from the list successfully,
-          *         False if it was not (not in the list, list is empty, etc...).
+          * @return The command in the list to retrieve.
           */
          Command* get();
 
          /**
-          * Parse the commands in the Command List specified in the
+          * Parse the commands in the Command List specified in the string argument.
+          *
+          * @param commands_str The string representation of the command to parse.
           */
          void parse(std::string commands_str);
 
          /**
           * Setter for the communication Queue object to allow parsed messages
-          * to respond to Jetstream.
+          * to respond to the API Server.
           *
           * @param commQueue Communication Queue reference.
           */
@@ -62,7 +61,7 @@ namespace Terso
           */
          static const uint8_t COMMAND_BUFFER_SIZE = 100;
 
-         // NOTE: consider moving these constants to tersoTypes.h
+         // NOTE: consider moving these constants to basicTypes.h
          static const int8_t STR_COMPARE_MATCH = 0;
          static const int8_t STR_COMPARE_SHORTER_OR_LESS = -1;
          static const int8_t STR_COMPARE_LONGER_OR_GREATER = 1;
@@ -78,9 +77,9 @@ namespace Terso
          RingBuffer m_commandList;
 
          /**
-          * The concrete instances of the jetstream commands.
+          * The concrete instances of the commands.
           */
-         JetstreamCommands m_jetstreamCmds;
+         AppCommands m_appCmds;
 
          /**
           * pointer to the communication queue for enqueuing command responses.
@@ -90,7 +89,9 @@ namespace Terso
          /**
           * Parse the command based on the name
           *
+          * @param commandElement The XML containing the command to parse.
           * @param commandName_str The name of the command to parse.
+          * @param commandId The unique id of the command to parse.
           */
          virtual void parseByCommand(tinyxml2::XMLElement* commandElement,
                                      const std::string commandName_str,
@@ -99,7 +100,7 @@ namespace Terso
          // define the copy constructor and the assignment operator to ensure
          // they are not automatically created by the compiler.
          // TODO: the copy constructor causes errors down the chain, so its commented out here for now... this sucks, it sucks, sucks
-         //CommandList(CommandList& copy __attribute__((unused))) : m_commandList(NULL, 0, 0), m_jetstreamCmds(copy.m_jetstreamCmds) { };
+         //CommandList(CommandList& copy __attribute__((unused))) : m_commandList(NULL, 0, 0), m_appCmds(copy.m_appCmds) { };
          CommandList& operator=(CommandList& rhs __attribute__((unused))) {return rhs; };
    };
 }

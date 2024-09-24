@@ -1,10 +1,10 @@
-#ifndef SETCONFIGVALUESCOMMAND_H_
-#define SETCONFIGVALUESCOMMAND_H_
+#ifndef SETCONFIGVALUESCOMMAND_H
+#define SETCONFIGVALUESCOMMAND_H
 
-namespace Terso
+namespace CecilStLabs
 {
    /**
-    * Jetstream command for setting the configuration values to a new value in
+    * Command for setting the configuration values to a new value in
     * the system.
     */
    class SetConfigValuesCommand : public Command, public ILoggable
@@ -12,7 +12,7 @@ namespace Terso
       public:
 
          /**
-          * Create the jetstream set configuration values command.
+          * Create the set configuration values command.
           */
          SetConfigValuesCommand(IConfig& config,
                                 IClockDriver* clockDriver,
@@ -58,8 +58,7 @@ namespace Terso
       protected:
 
          /**
-          * The maximum number of parameters currently available for the
-          * RFID Enclosures
+          * The maximum number of parameters currently available for the device
           */
          static const uint8_t MAX_NUM_PARAMETERS = 27;
 

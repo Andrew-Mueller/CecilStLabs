@@ -1,6 +1,8 @@
 #ifndef IINTERNALEVENT_H_
 #define IINTERNALEVENT_H_
 
+// TODO: this is duplicated here.  It needs to go into a common object constant
+//       so it can be inherited properly.
 #define MAX_EVENT_DATA 256
 
 namespace CecilStLabs
@@ -40,13 +42,14 @@ namespace CecilStLabs
          /**
           * copies the data for the event into its internal buffer
           *
-          * @param data buffer of data
-          * @param size size of the data, if its string data this includes NULL
+          * @param data Buffer of data to set for the internal event.
+          * @param size Number of bytes in the data buffer specified.
+          *             If its string data this includes NULL.
           */
          virtual void setData( const uint8_t* data, const int size )
          {
-            memset( m_data.data, 0, MAX_EVENT_DATA );
-            memcpy( m_data.data, data, size );
+            memset( m_data.data, 0, MAX_EVENT_DATA);
+            memcpy( m_data.data, data, size);
             m_data.size = size;
          }
 

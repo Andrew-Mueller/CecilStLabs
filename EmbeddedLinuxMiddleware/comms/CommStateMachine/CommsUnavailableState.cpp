@@ -146,7 +146,6 @@ namespace CecilStLabs
 
          if( tryHTTPS )
          {
-
             // ask the queue for the next message until all messages are sent.
             CommRecord* record = m_commDAL->getOldestRecord();
 

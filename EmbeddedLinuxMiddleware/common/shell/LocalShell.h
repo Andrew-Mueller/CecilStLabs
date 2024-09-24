@@ -44,7 +44,7 @@ namespace CecilStLabs
          void executeShell();
 
          /**
-          * Authenticate the user to ensure the specified user has acceses to the shell.
+          * Authenticate the user to ensure the specified user has access to the shell.
           *
           * @param user user name
           *

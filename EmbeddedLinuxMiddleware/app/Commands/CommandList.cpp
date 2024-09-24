@@ -3,11 +3,11 @@
 #include <string>
 using namespace std;
 
-#include "../../common/tersoTypes.h"               //lint !e761
+#include "../../common/basicTypes.h"               //lint !e761
 #include "../../common/util/EnumByName.h"
 #include "../../common/DateTime/DateTime.h"
 #include "../../common/DateTime/IClockDriver.h"
-#include "../../common/util/TersoUtil.h"
+#include "../../common/util/BasicUtil.h"
 #include "../../common/guid.h"
 
 #include "../../common/LinkedList/SingleLink.h"
@@ -31,26 +31,26 @@ using namespace tinyxml2;
 #include "../../common/InternalEvent/IInternalEventHandler.h"
 #include "../../common/InternalEvent/InternalEventRegistry.h"
 
-#include "../jetstreamMessages.h"
-#include "../Events/jetstreamEvent.h"
+#include "../Messages.h"
+#include "../Events/Event.h"
 #include "../Events/CommandCompletionEvent.h"
 
 #include "Command.h"
 #include "ResetCommand.h"
 #include "GetConfigValuesCommand.h"
 #include "SetConfigValuesCommand.h"
-#include "JetstreamCommands.h"
+#include "Commands.h"
 #include "CommandList.h"
 
 
-namespace Terso
+namespace CecilStLabs
 {
    CommandList::CommandList(IConfig& config,
                             IClockDriver* clockDriver,
                             std::string deviceAccessKey,
                             std::string deviceSerialNumber)
       : m_commandList(m_commandBufferAddys, sizeof(uint32_t), COMMAND_BUFFER_SIZE),
-        m_jetstreamCmds(config, clockDriver, deviceAccessKey, deviceSerialNumber),
+        m_appCmds(config, clockDriver, deviceAccessKey, deviceSerialNumber),
         m_commQueue(NULL)
    {
       memset(m_commandBufferAddys, 0, COMMAND_BUFFER_SIZE);
@@ -62,7 +62,7 @@ namespace Terso
       Command* cmd[COMMAND_BUFFER_SIZE];
 
       // empty the ring buffer.
-      // TODO: Is this unnecessary since everything is statically allocated.
+      // TODO: Is this unnecessary since everything is statically allocated?
       m_commandList.get(cmd, COMMAND_BUFFER_SIZE);
    }
 
@@ -89,9 +89,7 @@ namespace Terso
    {
       // NOTE: the xml parsed here to get at the commands is different than the
       //       application side documentation.  In the future we will hopefully
-      //       have device side documentation.  Until the device side
-      //       documentation is complete, it is easiest to dig through
-      //       the Kiosk application code for examples.
+      //       have device side documentation.
 
       // The received commands DO NOT need to be saved in non-volatile memory to be
       // preserved in the case of a reset.  If the device resets, we assume it
@@ -110,7 +108,7 @@ namespace Terso
          XMLElement* childroot = NULL;
          XMLElement* child = NULL;
 
-         // the root element should be "Jetstream"
+         // the root element should be the name of the application
          childroot = xmlDoc.RootElement();
 
          if ((NULL != childroot) && !childroot->NoChildren())
@@ -163,7 +161,7 @@ namespace Terso
    {
       m_commQueue = &commQueue;
 
-      m_jetstreamCmds.setCommunicationQueue(&commQueue);
+      m_appCmds.setCommunicationQueue(&commQueue);
    }
 
    void CommandList::parseByCommand(XMLElement* commandElement,
@@ -175,17 +173,17 @@ namespace Terso
       // TODO: this is a problem, since if two of the same commands come in, it
       //       will stomp on the previous commands values.  not sure if this is
       //       a "logical" problem or not.
-      if (STR_COMPARE_MATCH == commandName_str.compare(m_jetstreamCmds.getResetCommand()->getCommandName()))
+      if (STR_COMPARE_MATCH == commandName_str.compare(m_appCmds.getResetCommand()->getCommandName()))
       {
-         cmd = m_jetstreamCmds.getResetCommand();
+         cmd = m_appCmds.getResetCommand();
       }
-      else if (STR_COMPARE_MATCH == commandName_str.compare(m_jetstreamCmds.getGetConfigValuesCommand()->getCommandName()))
+      else if (STR_COMPARE_MATCH == commandName_str.compare(m_appCmds.getGetConfigValuesCommand()->getCommandName()))
       {
-         cmd = m_jetstreamCmds.getGetConfigValuesCommand();
+         cmd = m_appCmds.getGetConfigValuesCommand();
       }
-      else if (STR_COMPARE_MATCH == commandName_str.compare(m_jetstreamCmds.getSetConfigValuesCommand()->getCommandName()))
+      else if (STR_COMPARE_MATCH == commandName_str.compare(m_appCmds.getSetConfigValuesCommand()->getCommandName()))
       {
-         cmd = m_jetstreamCmds.getSetConfigValuesCommand();
+         cmd = m_appCmds.getSetConfigValuesCommand();
       }
 
       // parse the arguments if there are any.

@@ -20,7 +20,7 @@ namespace CecilStLabs
           * devices error log.
           *
           * @param message Log message to send to the application log.
-          * @param level Standard Posix Logging level used to filter messages
+          * @param level Standard Posix Logging level used to filter messages (debug, info, verbose, etc.)
           * @param type Option implementation and application specific message
           *             type (defaults to an empty string).
           */
