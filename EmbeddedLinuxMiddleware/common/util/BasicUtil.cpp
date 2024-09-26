@@ -1,6 +1,7 @@
 #include <stdio.h>	// TODO: convert these all to <cstdio>
 #include <string.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <limits.h>
 #include <errno.h>
 #include <signal.h>

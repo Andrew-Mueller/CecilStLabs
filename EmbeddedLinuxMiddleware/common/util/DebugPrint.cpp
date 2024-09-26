@@ -8,6 +8,7 @@
 using namespace std;
 
 #include <pthread.h>                            //lint !e537
+#include <sys/types.h>
 
 #include "../basicTypes.h"
 #include "../util/EnumByName.h"

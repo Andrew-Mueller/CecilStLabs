@@ -1,6 +1,10 @@
 #ifndef DEBUGPRINT_H
 #define DEBUGPRINT_H
 
+#include <pthread.h>                            //lint !e537
+#include <sys/types.h>
+
+
 namespace CecilStLabs
 {
    /**

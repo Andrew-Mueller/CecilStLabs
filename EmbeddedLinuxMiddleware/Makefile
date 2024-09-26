@@ -5,14 +5,15 @@
 # -std=gnu99: use the c++ language standard for gnu99
 # -pedantic: generate warning and errors for any non ISO C/C++ standard extensions.
 
-#C_COMPILER=arm-none-eabi-gcc 
-C_COMPILER=gcc
+C_COMPILER=arm-none-eabi-gcc 
+#C_COMPILER=gcc
 CPP_COMPILER=arm-none-eabi-g++
 STRIPPER=arm-none-eabi-strip
 LIB_FLAGS=-lstdc++ -lpthread -lssl -lcrypt -lltkcpp_zeus -lxml2_atmel -lrt -lusb
 LIB_DIR=-Lhardware/LLRPToolkit/lib
 API_LIB_FLAGS=-lstdc++ -lssl -lcrypto -ldl -lrt -lpthread
-COMPILE_FLAGS=-Wall -Werror -Wno-write-strings -std=gnu11
+COMPILE_FLAGS=-Wall -Werror -Wno-write-strings -std=c++11
+SQLITE_COMPILE_FLAGS=-Wall -Werror -Wno-write-strings
 
 # ----------
 # Makes the shared archive file for common code.
@@ -111,12 +112,9 @@ SOURCES := common/util/BasicUtil.cpp \
            app/Commands/SetConfigValuesCommand.cpp \
            app/Requests/SyncTime_Request.cpp \
            app/Events/Event.cpp \
-           app/Events/ObjectEvent.cpp \
-           app/Events/AggregateEvent.cpp \
            app/Events/LogEntryEvent.cpp \
            app/Events/CommandCompletionEvent.cpp \
-           app/Events/SensorReadingEvent.cpp \
-           app/MessageParser.cpp \
+           app/MessageParser.cpp
            
 
 OBJDIR=obj
@@ -199,15 +197,10 @@ OBJS := BasicUtil.o \
         SetConfigValuesCommand.o \
         SyncTime_Request.o \
         Event.o \
-        ObjectEvent.o \
-        AggregateEvent.o \
         LogEntryEvent.o \
         sqlite3.o \
         CommandCompletionEvent.o \
-        SensorReadingEvent.o \
-        MessageParser.o \
-        tag.o \
-        inventory.o
+        MessageParser.o
 
 #                    $(UNIT_TEST_DIR)/comms/Socket_Test.cpp
         
@@ -302,7 +295,7 @@ unitTests:
 # documentation.
 .PHONY: sqlite
 sqlite:
-	$(C_COMPILER) $(COMPILE_FLAGS) sqlite/sqlite3.c -c
+	$(C_COMPILER) $(SQLITE_COMPILE_FLAGS) sqlite/sqlite3.c -c
 
 # 
 #
